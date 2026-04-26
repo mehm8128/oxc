@@ -35,12 +35,22 @@ fn must_be_focusable_diagnostic(role: &str, span: Span) -> OxcDiagnostic {
 
 pub const EVENT_HANDLERS: &[&[&str]] = &[MOUSE_EVENT_HANDLERS, KEYBOARD_EVENT_HANDLERS];
 
-#[derive(Debug, Default, Clone, JsonSchema, Deserialize)]
+const DEFAULT_TABBABLE: &[&str] =
+    &["button", "checkbox", "link", "searchbox", "spinbutton", "switch", "textbox"];
+
+#[derive(Debug, Clone, JsonSchema, Deserialize)]
 #[serde(rename_all = "camelCase", default)]
 pub struct InteractiveSupportsFocus {
     /// An array of interactive ARIA roles that should be considered tabbable (require `tabIndex={0}`).
     /// Interactive roles not in this list are only required to be focusable (`tabIndex={-1}` is sufficient).
+    /// Defaults to `["button", "checkbox", "link", "searchbox", "spinbutton", "switch", "textbox"]`.
     tabbable: Vec<CompactStr>,
+}
+
+impl Default for InteractiveSupportsFocus {
+    fn default() -> Self {
+        Self { tabbable: DEFAULT_TABBABLE.iter().map(|s| CompactStr::new(s)).collect() }
+    }
 }
 
 declare_oxc_lint!(
@@ -278,32 +288,20 @@ fn test() {
         (r#"<div role="treeitem" onClick={() => void 0} />"#, None, None),
     ];
 
-    let fix = vec![
-        (
-            r#"<div role="button" onClick={() => void 0} />"#,
-            (
-                r#"<div tabIndex={0} role="button" onClick={() => void 0} />"#,
-                r#"<div tabIndex={-1} role="button" onClick={() => void 0} />"#,
-            ),
-        ),
-        (
-            r#"<div role="menuitem" onClick={() => void 0} />"#,
-            (
-                r#"<div tabIndex={0} role="menuitem" onClick={() => void 0} />"#,
-                r#"<div tabIndex={-1} role="menuitem" onClick={() => void 0} />"#,
-            ),
-        ),
-    ];
-
     let fix_tabbable = vec![(
         r#"<div role="button" onClick={() => void 0} />"#,
         r#"<div tabIndex={0} role="button" onClick={() => void 0} />"#,
-        Some(serde_json::json!([{ "tabbable": ["button"] }])),
-        None::<serde_json::Value>,
+    )];
+    let fix_focusable = vec![(
+        r#"<div role="menuitem" onClick={() => void 0} />"#,
+        (
+            r#"<div tabIndex={0} role="menuitem" onClick={() => void 0} />"#,
+            r#"<div tabIndex={-1} role="menuitem" onClick={() => void 0} />"#,
+        ),
     )];
 
     Tester::new(InteractiveSupportsFocus::NAME, InteractiveSupportsFocus::PLUGIN, pass, fail)
-        .expect_fix(fix)
         .expect_fix(fix_tabbable)
+        .expect_fix(fix_focusable)
         .test_and_snapshot();
 }
