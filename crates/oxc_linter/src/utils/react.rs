@@ -305,11 +305,12 @@ const NON_INTERACTIVE_ELEMENT_TYPES: [&str; 59] = [
     "ul",
 ];
 
-const INTERACTIVE_ROLES: [&str; 27] = [
+const INTERACTIVE_ROLES: [&str; 30] = [
     "button",
     "checkbox",
     "columnheader",
     "combobox",
+    "grid",
     "gridcell",
     "link",
     "listbox",
@@ -325,20 +326,22 @@ const INTERACTIVE_ROLES: [&str; 27] = [
     "rowheader",
     "scrollbar",
     "searchbox",
-    "separator",
     "slider",
     "spinbutton",
     "switch",
     "tab",
+    "tablist",
     "textbox",
     // Per the original rule:
     // > 'toolbar' does not descend from widget, but it does support
     // > aria-activedescendant, thus in practice we treat it as a widget.
     "toolbar",
+    "tree",
+    "treegrid",
     "treeitem",
 ];
 
-const NON_INTERACTIVE_ROLES: [&str; 47] = [
+const NON_INTERACTIVE_ROLES: [&str; 44] = [
     "alert",
     "alertdialog",
     "application",
@@ -357,7 +360,6 @@ const NON_INTERACTIVE_ROLES: [&str; 47] = [
     "feed",
     "figure",
     "form",
-    "grid",
     "group",
     "heading",
     "img",
@@ -379,16 +381,14 @@ const NON_INTERACTIVE_ROLES: [&str; 47] = [
     "row",
     "rowgroup",
     "search",
+    "separator",
     "status",
     "table",
-    "tablist",
     "tabpanel",
     "term",
     "time",
     "timer",
     "tooltip",
-    "tree",
-    "treegrid",
 ];
 
 // ref: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/8f75961d965e47afb88854d324bd32fafde7acfe/src/util/isInteractiveRole.js
