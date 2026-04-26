@@ -305,7 +305,7 @@ const NON_INTERACTIVE_ELEMENT_TYPES: [&str; 59] = [
     "ul",
 ];
 
-const INTERACTIVE_ROLES: [&str; 30] = [
+const INTERACTIVE_ROLES: [&str; 31] = [
     "button",
     "checkbox",
     "columnheader",
@@ -326,6 +326,7 @@ const INTERACTIVE_ROLES: [&str; 30] = [
     "rowheader",
     "scrollbar",
     "searchbox",
+    "separator",
     "slider",
     "spinbutton",
     "switch",
@@ -341,7 +342,7 @@ const INTERACTIVE_ROLES: [&str; 30] = [
     "treeitem",
 ];
 
-const NON_INTERACTIVE_ROLES: [&str; 44] = [
+const NON_INTERACTIVE_ROLES: [&str; 43] = [
     "alert",
     "alertdialog",
     "application",
@@ -381,7 +382,6 @@ const NON_INTERACTIVE_ROLES: [&str; 44] = [
     "row",
     "rowgroup",
     "search",
-    "separator",
     "status",
     "table",
     "tabpanel",
