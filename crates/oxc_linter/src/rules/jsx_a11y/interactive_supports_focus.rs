@@ -12,10 +12,10 @@ use crate::{
     fixer::RuleFixer,
     rule::{DefaultRuleConfig, Rule},
     utils::{
-        EVENT_HANDLERS, get_element_type, get_string_literal_prop_value, has_jsx_prop,
-        has_jsx_prop_ignore_case, is_disabled_element, is_hidden_from_screen_reader,
-        is_interactive_element, is_interactive_role, is_non_interactive_element,
-        is_non_interactive_role, is_presentation_role,
+        KEYBOARD_EVENT_HANDLERS, MOUSE_EVENT_HANDLERS, get_element_type,
+        get_string_literal_prop_value, has_jsx_prop, has_jsx_prop_ignore_case, is_disabled_element,
+        is_hidden_from_screen_reader, is_interactive_element, is_interactive_role,
+        is_non_interactive_element, is_non_interactive_role, is_presentation_role,
     },
 };
 
@@ -32,6 +32,8 @@ fn must_be_focusable_diagnostic(role: &str, span: Span) -> OxcDiagnostic {
         .with_help("Add `tabIndex={0}` or `tabIndex={-1}` to make the element focusable.")
         .with_label(span)
 }
+
+pub const EVENT_HANDLERS: &[&[&str]] = &[MOUSE_EVENT_HANDLERS, KEYBOARD_EVENT_HANDLERS];
 
 #[derive(Debug, Default, Clone, JsonSchema, Deserialize)]
 #[serde(rename_all = "camelCase", default)]

@@ -422,10 +422,8 @@ pub const MOUSE_EVENT_HANDLERS: &[&str] = &[
     "onMouseOver",
     "onMouseUp",
 ];
-
 pub const KEYBOARD_EVENT_HANDLERS: &[&str] = &["onKeyDown", "onKeyPress", "onKeyUp"];
-
-pub const EVENT_HANDLERS: &[&[&str]] = &[MOUSE_EVENT_HANDLERS, KEYBOARD_EVENT_HANDLERS];
+pub const FOCUS_EVENT_HANDLERS: &[&str] = &["onFocus", "onBlur"];
 
 const PRAGMA: &str = "React";
 const CREATE_CLASS: &str = "createReactClass";
