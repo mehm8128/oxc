@@ -609,6 +609,7 @@ pub(crate) mod jsx_a11y {
     pub mod html_has_lang;
     pub mod iframe_has_title;
     pub mod img_redundant_alt;
+    pub mod interactive_supports_focus;
     pub mod label_has_associated_control;
     pub mod lang;
     pub mod media_has_caption;
