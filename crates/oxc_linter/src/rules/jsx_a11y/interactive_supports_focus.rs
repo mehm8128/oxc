@@ -33,21 +33,24 @@ fn must_be_focusable_diagnostic(role: &str, span: Span) -> OxcDiagnostic {
         .with_label(span)
 }
 
-pub const EVENT_HANDLERS: &[&[&str]] = &[MOUSE_EVENT_HANDLERS, KEYBOARD_EVENT_HANDLERS];
+const EVENT_HANDLERS: &[&[&str]] = &[MOUSE_EVENT_HANDLERS, KEYBOARD_EVENT_HANDLERS];
 
 const DEFAULT_TABBABLE: &[&str] =
     &["button", "checkbox", "link", "searchbox", "spinbutton", "switch", "textbox"];
 
+#[derive(Debug, Default, Clone, Deserialize)]
+pub struct InteractiveSupportsFocus(Box<InteractiveSupportsFocusConfig>);
+
 #[derive(Debug, Clone, JsonSchema, Deserialize)]
-#[serde(rename_all = "camelCase", default)]
-pub struct InteractiveSupportsFocus {
+#[serde(rename_all = "camelCase", default, deny_unknown_fields)]
+pub struct InteractiveSupportsFocusConfig {
     /// An array of interactive ARIA roles that should be considered tabbable (require `tabIndex={0}`).
     /// Interactive roles not in this list are only required to be focusable (`tabIndex={-1}` is sufficient).
     /// Defaults to `["button", "checkbox", "link", "searchbox", "spinbutton", "switch", "textbox"]`.
     tabbable: Vec<CompactStr>,
 }
 
-impl Default for InteractiveSupportsFocus {
+impl Default for InteractiveSupportsFocusConfig {
     fn default() -> Self {
         Self { tabbable: DEFAULT_TABBABLE.iter().map(|s| CompactStr::new(s)).collect() }
     }
@@ -89,7 +92,7 @@ declare_oxc_lint!(
     jsx_a11y,
     correctness,
     suggestion,
-    config = InteractiveSupportsFocus,
+    config = InteractiveSupportsFocusConfig,
     version = "next",
 );
 
@@ -130,7 +133,7 @@ impl Rule for InteractiveSupportsFocus {
             return;
         }
 
-        if self.tabbable.iter().any(|t| t.as_str() == role) {
+        if self.0.tabbable.iter().any(|t| t.as_str() == role) {
             ctx.diagnostic_with_suggestion(
                 must_be_tabbable_diagnostic(role, jsx_el.span),
                 |fixer| fixer.insert_text_after(&jsx_el.name, " tabIndex={0}"),
