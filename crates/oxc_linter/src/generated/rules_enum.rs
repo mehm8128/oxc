@@ -1350,7 +1350,6 @@ pub enum RuleEnum {
     UnicornSwitchCaseBreakPosition(UnicornSwitchCaseBreakPosition),
     UnicornTextEncodingIdentifierCase(UnicornTextEncodingIdentifierCase),
     UnicornThrowNewError(UnicornThrowNewError),
-    JsxA11YInteractiveSupportsFocus(JsxA11YInteractiveSupportsFocus),
     JsxA11YAltText(JsxA11YAltText),
     JsxA11YAnchorAmbiguousText(JsxA11YAnchorAmbiguousText),
     JsxA11YAnchorHasContent(JsxA11YAnchorHasContent),
@@ -1366,6 +1365,7 @@ pub enum RuleEnum {
     JsxA11YHtmlHasLang(JsxA11YHtmlHasLang),
     JsxA11YIframeHasTitle(JsxA11YIframeHasTitle),
     JsxA11YImgRedundantAlt(JsxA11YImgRedundantAlt),
+    JsxA11YInteractiveSupportsFocus(JsxA11YInteractiveSupportsFocus),
     JsxA11YLabelHasAssociatedControl(JsxA11YLabelHasAssociatedControl),
     JsxA11YLang(JsxA11YLang),
     JsxA11YMediaHasCaption(JsxA11YMediaHasCaption),
@@ -2193,8 +2193,7 @@ const UNICORN_SWITCH_CASE_BREAK_POSITION_ID: usize = UNICORN_SWITCH_CASE_BRACES_
 const UNICORN_TEXT_ENCODING_IDENTIFIER_CASE_ID: usize =
     UNICORN_SWITCH_CASE_BREAK_POSITION_ID + 1usize;
 const UNICORN_THROW_NEW_ERROR_ID: usize = UNICORN_TEXT_ENCODING_IDENTIFIER_CASE_ID + 1usize;
-const JSX_A_11_Y_INTERACTIVE_SUPPORTS_FOCUS_ID: usize = UNICORN_THROW_NEW_ERROR_ID + 1usize;
-const JSX_A_11_Y_ALT_TEXT_ID: usize = JSX_A_11_Y_INTERACTIVE_SUPPORTS_FOCUS_ID + 1usize;
+const JSX_A_11_Y_ALT_TEXT_ID: usize = UNICORN_THROW_NEW_ERROR_ID + 1usize;
 const JSX_A_11_Y_ANCHOR_AMBIGUOUS_TEXT_ID: usize = JSX_A_11_Y_ALT_TEXT_ID + 1usize;
 const JSX_A_11_Y_ANCHOR_HAS_CONTENT_ID: usize = JSX_A_11_Y_ANCHOR_AMBIGUOUS_TEXT_ID + 1usize;
 const JSX_A_11_Y_ANCHOR_IS_VALID_ID: usize = JSX_A_11_Y_ANCHOR_HAS_CONTENT_ID + 1usize;
@@ -2211,7 +2210,9 @@ const JSX_A_11_Y_HEADING_HAS_CONTENT_ID: usize =
 const JSX_A_11_Y_HTML_HAS_LANG_ID: usize = JSX_A_11_Y_HEADING_HAS_CONTENT_ID + 1usize;
 const JSX_A_11_Y_IFRAME_HAS_TITLE_ID: usize = JSX_A_11_Y_HTML_HAS_LANG_ID + 1usize;
 const JSX_A_11_Y_IMG_REDUNDANT_ALT_ID: usize = JSX_A_11_Y_IFRAME_HAS_TITLE_ID + 1usize;
-const JSX_A_11_Y_LABEL_HAS_ASSOCIATED_CONTROL_ID: usize = JSX_A_11_Y_IMG_REDUNDANT_ALT_ID + 1usize;
+const JSX_A_11_Y_INTERACTIVE_SUPPORTS_FOCUS_ID: usize = JSX_A_11_Y_IMG_REDUNDANT_ALT_ID + 1usize;
+const JSX_A_11_Y_LABEL_HAS_ASSOCIATED_CONTROL_ID: usize =
+    JSX_A_11_Y_INTERACTIVE_SUPPORTS_FOCUS_ID + 1usize;
 const JSX_A_11_Y_LANG_ID: usize = JSX_A_11_Y_LABEL_HAS_ASSOCIATED_CONTROL_ID + 1usize;
 const JSX_A_11_Y_MEDIA_HAS_CAPTION_ID: usize = JSX_A_11_Y_LANG_ID + 1usize;
 const JSX_A_11_Y_MOUSE_EVENTS_HAVE_KEY_EVENTS_ID: usize = JSX_A_11_Y_MEDIA_HAS_CAPTION_ID + 1usize;
@@ -3078,7 +3079,6 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(_) => UNICORN_SWITCH_CASE_BREAK_POSITION_ID,
             Self::UnicornTextEncodingIdentifierCase(_) => UNICORN_TEXT_ENCODING_IDENTIFIER_CASE_ID,
             Self::UnicornThrowNewError(_) => UNICORN_THROW_NEW_ERROR_ID,
-            Self::JsxA11YInteractiveSupportsFocus(_) => JSX_A_11_Y_INTERACTIVE_SUPPORTS_FOCUS_ID,
             Self::JsxA11YAltText(_) => JSX_A_11_Y_ALT_TEXT_ID,
             Self::JsxA11YAnchorAmbiguousText(_) => JSX_A_11_Y_ANCHOR_AMBIGUOUS_TEXT_ID,
             Self::JsxA11YAnchorHasContent(_) => JSX_A_11_Y_ANCHOR_HAS_CONTENT_ID,
@@ -3096,6 +3096,7 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(_) => JSX_A_11_Y_HTML_HAS_LANG_ID,
             Self::JsxA11YIframeHasTitle(_) => JSX_A_11_Y_IFRAME_HAS_TITLE_ID,
             Self::JsxA11YImgRedundantAlt(_) => JSX_A_11_Y_IMG_REDUNDANT_ALT_ID,
+            Self::JsxA11YInteractiveSupportsFocus(_) => JSX_A_11_Y_INTERACTIVE_SUPPORTS_FOCUS_ID,
             Self::JsxA11YLabelHasAssociatedControl(_) => JSX_A_11_Y_LABEL_HAS_ASSOCIATED_CONTROL_ID,
             Self::JsxA11YLang(_) => JSX_A_11_Y_LANG_ID,
             Self::JsxA11YMediaHasCaption(_) => JSX_A_11_Y_MEDIA_HAS_CAPTION_ID,
@@ -3951,7 +3952,6 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(_) => UnicornSwitchCaseBreakPosition::NAME,
             Self::UnicornTextEncodingIdentifierCase(_) => UnicornTextEncodingIdentifierCase::NAME,
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::NAME,
-            Self::JsxA11YInteractiveSupportsFocus(_) => JsxA11YInteractiveSupportsFocus::NAME,
             Self::JsxA11YAltText(_) => JsxA11YAltText::NAME,
             Self::JsxA11YAnchorAmbiguousText(_) => JsxA11YAnchorAmbiguousText::NAME,
             Self::JsxA11YAnchorHasContent(_) => JsxA11YAnchorHasContent::NAME,
@@ -3969,6 +3969,7 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(_) => JsxA11YHtmlHasLang::NAME,
             Self::JsxA11YIframeHasTitle(_) => JsxA11YIframeHasTitle::NAME,
             Self::JsxA11YImgRedundantAlt(_) => JsxA11YImgRedundantAlt::NAME,
+            Self::JsxA11YInteractiveSupportsFocus(_) => JsxA11YInteractiveSupportsFocus::NAME,
             Self::JsxA11YLabelHasAssociatedControl(_) => JsxA11YLabelHasAssociatedControl::NAME,
             Self::JsxA11YLang(_) => JsxA11YLang::NAME,
             Self::JsxA11YMediaHasCaption(_) => JsxA11YMediaHasCaption::NAME,
@@ -4862,7 +4863,6 @@ impl RuleEnum {
                 UnicornTextEncodingIdentifierCase::CATEGORY
             }
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::CATEGORY,
-            Self::JsxA11YInteractiveSupportsFocus(_) => JsxA11YInteractiveSupportsFocus::CATEGORY,
             Self::JsxA11YAltText(_) => JsxA11YAltText::CATEGORY,
             Self::JsxA11YAnchorAmbiguousText(_) => JsxA11YAnchorAmbiguousText::CATEGORY,
             Self::JsxA11YAnchorHasContent(_) => JsxA11YAnchorHasContent::CATEGORY,
@@ -4880,6 +4880,7 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(_) => JsxA11YHtmlHasLang::CATEGORY,
             Self::JsxA11YIframeHasTitle(_) => JsxA11YIframeHasTitle::CATEGORY,
             Self::JsxA11YImgRedundantAlt(_) => JsxA11YImgRedundantAlt::CATEGORY,
+            Self::JsxA11YInteractiveSupportsFocus(_) => JsxA11YInteractiveSupportsFocus::CATEGORY,
             Self::JsxA11YLabelHasAssociatedControl(_) => JsxA11YLabelHasAssociatedControl::CATEGORY,
             Self::JsxA11YLang(_) => JsxA11YLang::CATEGORY,
             Self::JsxA11YMediaHasCaption(_) => JsxA11YMediaHasCaption::CATEGORY,
@@ -5744,7 +5745,6 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(_) => UnicornSwitchCaseBreakPosition::FIX,
             Self::UnicornTextEncodingIdentifierCase(_) => UnicornTextEncodingIdentifierCase::FIX,
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::FIX,
-            Self::JsxA11YInteractiveSupportsFocus(_) => JsxA11YInteractiveSupportsFocus::FIX,
             Self::JsxA11YAltText(_) => JsxA11YAltText::FIX,
             Self::JsxA11YAnchorAmbiguousText(_) => JsxA11YAnchorAmbiguousText::FIX,
             Self::JsxA11YAnchorHasContent(_) => JsxA11YAnchorHasContent::FIX,
@@ -5762,6 +5762,7 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(_) => JsxA11YHtmlHasLang::FIX,
             Self::JsxA11YIframeHasTitle(_) => JsxA11YIframeHasTitle::FIX,
             Self::JsxA11YImgRedundantAlt(_) => JsxA11YImgRedundantAlt::FIX,
+            Self::JsxA11YInteractiveSupportsFocus(_) => JsxA11YInteractiveSupportsFocus::FIX,
             Self::JsxA11YLabelHasAssociatedControl(_) => JsxA11YLabelHasAssociatedControl::FIX,
             Self::JsxA11YLang(_) => JsxA11YLang::FIX,
             Self::JsxA11YMediaHasCaption(_) => JsxA11YMediaHasCaption::FIX,
@@ -6790,9 +6791,6 @@ impl RuleEnum {
                 UnicornTextEncodingIdentifierCase::documentation()
             }
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::documentation(),
-            Self::JsxA11YInteractiveSupportsFocus(_) => {
-                JsxA11YInteractiveSupportsFocus::documentation()
-            }
             Self::JsxA11YAltText(_) => JsxA11YAltText::documentation(),
             Self::JsxA11YAnchorAmbiguousText(_) => JsxA11YAnchorAmbiguousText::documentation(),
             Self::JsxA11YAnchorHasContent(_) => JsxA11YAnchorHasContent::documentation(),
@@ -6814,6 +6812,9 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(_) => JsxA11YHtmlHasLang::documentation(),
             Self::JsxA11YIframeHasTitle(_) => JsxA11YIframeHasTitle::documentation(),
             Self::JsxA11YImgRedundantAlt(_) => JsxA11YImgRedundantAlt::documentation(),
+            Self::JsxA11YInteractiveSupportsFocus(_) => {
+                JsxA11YInteractiveSupportsFocus::documentation()
+            }
             Self::JsxA11YLabelHasAssociatedControl(_) => {
                 JsxA11YLabelHasAssociatedControl::documentation()
             }
@@ -8695,10 +8696,6 @@ impl RuleEnum {
             }
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::config_schema(generator)
                 .or_else(|| UnicornThrowNewError::schema(generator)),
-            Self::JsxA11YInteractiveSupportsFocus(_) => {
-                JsxA11YInteractiveSupportsFocus::config_schema(generator)
-                    .or_else(|| JsxA11YInteractiveSupportsFocus::schema(generator))
-            }
             Self::JsxA11YAltText(_) => JsxA11YAltText::config_schema(generator)
                 .or_else(|| JsxA11YAltText::schema(generator)),
             Self::JsxA11YAnchorAmbiguousText(_) => {
@@ -8737,6 +8734,10 @@ impl RuleEnum {
                 .or_else(|| JsxA11YIframeHasTitle::schema(generator)),
             Self::JsxA11YImgRedundantAlt(_) => JsxA11YImgRedundantAlt::config_schema(generator)
                 .or_else(|| JsxA11YImgRedundantAlt::schema(generator)),
+            Self::JsxA11YInteractiveSupportsFocus(_) => {
+                JsxA11YInteractiveSupportsFocus::config_schema(generator)
+                    .or_else(|| JsxA11YInteractiveSupportsFocus::schema(generator))
+            }
             Self::JsxA11YLabelHasAssociatedControl(_) => {
                 JsxA11YLabelHasAssociatedControl::config_schema(generator)
                     .or_else(|| JsxA11YLabelHasAssociatedControl::schema(generator))
@@ -9801,7 +9802,6 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(_) => "unicorn",
             Self::UnicornTextEncodingIdentifierCase(_) => "unicorn",
             Self::UnicornThrowNewError(_) => "unicorn",
-            Self::JsxA11YInteractiveSupportsFocus(_) => "jsx_a11y",
             Self::JsxA11YAltText(_) => "jsx_a11y",
             Self::JsxA11YAnchorAmbiguousText(_) => "jsx_a11y",
             Self::JsxA11YAnchorHasContent(_) => "jsx_a11y",
@@ -9817,6 +9817,7 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(_) => "jsx_a11y",
             Self::JsxA11YIframeHasTitle(_) => "jsx_a11y",
             Self::JsxA11YImgRedundantAlt(_) => "jsx_a11y",
+            Self::JsxA11YInteractiveSupportsFocus(_) => "jsx_a11y",
             Self::JsxA11YLabelHasAssociatedControl(_) => "jsx_a11y",
             Self::JsxA11YLang(_) => "jsx_a11y",
             Self::JsxA11YMediaHasCaption(_) => "jsx_a11y",
@@ -11847,9 +11848,6 @@ impl RuleEnum {
             Self::UnicornThrowNewError(_) => {
                 Ok(Self::UnicornThrowNewError(UnicornThrowNewError::from_configuration(value)?))
             }
-            Self::JsxA11YInteractiveSupportsFocus(_) => Ok(Self::JsxA11YInteractiveSupportsFocus(
-                JsxA11YInteractiveSupportsFocus::from_configuration(value)?,
-            )),
             Self::JsxA11YAltText(_) => {
                 Ok(Self::JsxA11YAltText(JsxA11YAltText::from_configuration(value)?))
             }
@@ -11897,6 +11895,9 @@ impl RuleEnum {
             Self::JsxA11YImgRedundantAlt(_) => {
                 Ok(Self::JsxA11YImgRedundantAlt(JsxA11YImgRedundantAlt::from_configuration(value)?))
             }
+            Self::JsxA11YInteractiveSupportsFocus(_) => Ok(Self::JsxA11YInteractiveSupportsFocus(
+                JsxA11YInteractiveSupportsFocus::from_configuration(value)?,
+            )),
             Self::JsxA11YLabelHasAssociatedControl(_) => {
                 Ok(Self::JsxA11YLabelHasAssociatedControl(
                     JsxA11YLabelHasAssociatedControl::from_configuration(value)?,
@@ -13028,7 +13029,6 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(rule) => rule.to_configuration(),
             Self::UnicornTextEncodingIdentifierCase(rule) => rule.to_configuration(),
             Self::UnicornThrowNewError(rule) => rule.to_configuration(),
-            Self::JsxA11YInteractiveSupportsFocus(rule) => rule.to_configuration(),
             Self::JsxA11YAltText(rule) => rule.to_configuration(),
             Self::JsxA11YAnchorAmbiguousText(rule) => rule.to_configuration(),
             Self::JsxA11YAnchorHasContent(rule) => rule.to_configuration(),
@@ -13044,6 +13044,7 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(rule) => rule.to_configuration(),
             Self::JsxA11YIframeHasTitle(rule) => rule.to_configuration(),
             Self::JsxA11YImgRedundantAlt(rule) => rule.to_configuration(),
+            Self::JsxA11YInteractiveSupportsFocus(rule) => rule.to_configuration(),
             Self::JsxA11YLabelHasAssociatedControl(rule) => rule.to_configuration(),
             Self::JsxA11YLang(rule) => rule.to_configuration(),
             Self::JsxA11YMediaHasCaption(rule) => rule.to_configuration(),
@@ -13797,7 +13798,6 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(rule) => rule.run(node, ctx),
             Self::UnicornTextEncodingIdentifierCase(rule) => rule.run(node, ctx),
             Self::UnicornThrowNewError(rule) => rule.run(node, ctx),
-            Self::JsxA11YInteractiveSupportsFocus(rule) => rule.run(node, ctx),
             Self::JsxA11YAltText(rule) => rule.run(node, ctx),
             Self::JsxA11YAnchorAmbiguousText(rule) => rule.run(node, ctx),
             Self::JsxA11YAnchorHasContent(rule) => rule.run(node, ctx),
@@ -13813,6 +13813,7 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(rule) => rule.run(node, ctx),
             Self::JsxA11YIframeHasTitle(rule) => rule.run(node, ctx),
             Self::JsxA11YImgRedundantAlt(rule) => rule.run(node, ctx),
+            Self::JsxA11YInteractiveSupportsFocus(rule) => rule.run(node, ctx),
             Self::JsxA11YLabelHasAssociatedControl(rule) => rule.run(node, ctx),
             Self::JsxA11YLang(rule) => rule.run(node, ctx),
             Self::JsxA11YMediaHasCaption(rule) => rule.run(node, ctx),
@@ -14564,7 +14565,6 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(rule) => rule.run_once(ctx),
             Self::UnicornTextEncodingIdentifierCase(rule) => rule.run_once(ctx),
             Self::UnicornThrowNewError(rule) => rule.run_once(ctx),
-            Self::JsxA11YInteractiveSupportsFocus(rule) => rule.run_once(ctx),
             Self::JsxA11YAltText(rule) => rule.run_once(ctx),
             Self::JsxA11YAnchorAmbiguousText(rule) => rule.run_once(ctx),
             Self::JsxA11YAnchorHasContent(rule) => rule.run_once(ctx),
@@ -14580,6 +14580,7 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(rule) => rule.run_once(ctx),
             Self::JsxA11YIframeHasTitle(rule) => rule.run_once(ctx),
             Self::JsxA11YImgRedundantAlt(rule) => rule.run_once(ctx),
+            Self::JsxA11YInteractiveSupportsFocus(rule) => rule.run_once(ctx),
             Self::JsxA11YLabelHasAssociatedControl(rule) => rule.run_once(ctx),
             Self::JsxA11YLang(rule) => rule.run_once(ctx),
             Self::JsxA11YMediaHasCaption(rule) => rule.run_once(ctx),
@@ -15429,7 +15430,6 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(rule) => rule.run_on_jest_node(jest_node, ctx),
             Self::UnicornTextEncodingIdentifierCase(rule) => rule.run_on_jest_node(jest_node, ctx),
             Self::UnicornThrowNewError(rule) => rule.run_on_jest_node(jest_node, ctx),
-            Self::JsxA11YInteractiveSupportsFocus(rule) => rule.run_on_jest_node(jest_node, ctx),
             Self::JsxA11YAltText(rule) => rule.run_on_jest_node(jest_node, ctx),
             Self::JsxA11YAnchorAmbiguousText(rule) => rule.run_on_jest_node(jest_node, ctx),
             Self::JsxA11YAnchorHasContent(rule) => rule.run_on_jest_node(jest_node, ctx),
@@ -15447,6 +15447,7 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(rule) => rule.run_on_jest_node(jest_node, ctx),
             Self::JsxA11YIframeHasTitle(rule) => rule.run_on_jest_node(jest_node, ctx),
             Self::JsxA11YImgRedundantAlt(rule) => rule.run_on_jest_node(jest_node, ctx),
+            Self::JsxA11YInteractiveSupportsFocus(rule) => rule.run_on_jest_node(jest_node, ctx),
             Self::JsxA11YLabelHasAssociatedControl(rule) => rule.run_on_jest_node(jest_node, ctx),
             Self::JsxA11YLang(rule) => rule.run_on_jest_node(jest_node, ctx),
             Self::JsxA11YMediaHasCaption(rule) => rule.run_on_jest_node(jest_node, ctx),
@@ -16204,7 +16205,6 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(rule) => rule.should_run(ctx),
             Self::UnicornTextEncodingIdentifierCase(rule) => rule.should_run(ctx),
             Self::UnicornThrowNewError(rule) => rule.should_run(ctx),
-            Self::JsxA11YInteractiveSupportsFocus(rule) => rule.should_run(ctx),
             Self::JsxA11YAltText(rule) => rule.should_run(ctx),
             Self::JsxA11YAnchorAmbiguousText(rule) => rule.should_run(ctx),
             Self::JsxA11YAnchorHasContent(rule) => rule.should_run(ctx),
@@ -16220,6 +16220,7 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(rule) => rule.should_run(ctx),
             Self::JsxA11YIframeHasTitle(rule) => rule.should_run(ctx),
             Self::JsxA11YImgRedundantAlt(rule) => rule.should_run(ctx),
+            Self::JsxA11YInteractiveSupportsFocus(rule) => rule.should_run(ctx),
             Self::JsxA11YLabelHasAssociatedControl(rule) => rule.should_run(ctx),
             Self::JsxA11YLang(rule) => rule.should_run(ctx),
             Self::JsxA11YMediaHasCaption(rule) => rule.should_run(ctx),
@@ -17241,9 +17242,6 @@ impl RuleEnum {
                 UnicornTextEncodingIdentifierCase::IS_TSGOLINT_RULE
             }
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::IS_TSGOLINT_RULE,
-            Self::JsxA11YInteractiveSupportsFocus(_) => {
-                JsxA11YInteractiveSupportsFocus::IS_TSGOLINT_RULE
-            }
             Self::JsxA11YAltText(_) => JsxA11YAltText::IS_TSGOLINT_RULE,
             Self::JsxA11YAnchorAmbiguousText(_) => JsxA11YAnchorAmbiguousText::IS_TSGOLINT_RULE,
             Self::JsxA11YAnchorHasContent(_) => JsxA11YAnchorHasContent::IS_TSGOLINT_RULE,
@@ -17265,6 +17263,9 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(_) => JsxA11YHtmlHasLang::IS_TSGOLINT_RULE,
             Self::JsxA11YIframeHasTitle(_) => JsxA11YIframeHasTitle::IS_TSGOLINT_RULE,
             Self::JsxA11YImgRedundantAlt(_) => JsxA11YImgRedundantAlt::IS_TSGOLINT_RULE,
+            Self::JsxA11YInteractiveSupportsFocus(_) => {
+                JsxA11YInteractiveSupportsFocus::IS_TSGOLINT_RULE
+            }
             Self::JsxA11YLabelHasAssociatedControl(_) => {
                 JsxA11YLabelHasAssociatedControl::IS_TSGOLINT_RULE
             }
@@ -18206,7 +18207,6 @@ impl RuleEnum {
                 UnicornTextEncodingIdentifierCase::VERSION
             }
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::VERSION,
-            Self::JsxA11YInteractiveSupportsFocus(_) => JsxA11YInteractiveSupportsFocus::VERSION,
             Self::JsxA11YAltText(_) => JsxA11YAltText::VERSION,
             Self::JsxA11YAnchorAmbiguousText(_) => JsxA11YAnchorAmbiguousText::VERSION,
             Self::JsxA11YAnchorHasContent(_) => JsxA11YAnchorHasContent::VERSION,
@@ -18224,6 +18224,7 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(_) => JsxA11YHtmlHasLang::VERSION,
             Self::JsxA11YIframeHasTitle(_) => JsxA11YIframeHasTitle::VERSION,
             Self::JsxA11YImgRedundantAlt(_) => JsxA11YImgRedundantAlt::VERSION,
+            Self::JsxA11YInteractiveSupportsFocus(_) => JsxA11YInteractiveSupportsFocus::VERSION,
             Self::JsxA11YLabelHasAssociatedControl(_) => JsxA11YLabelHasAssociatedControl::VERSION,
             Self::JsxA11YLang(_) => JsxA11YLang::VERSION,
             Self::JsxA11YMediaHasCaption(_) => JsxA11YMediaHasCaption::VERSION,
@@ -19154,7 +19155,6 @@ impl RuleEnum {
                 UnicornTextEncodingIdentifierCase::HAS_CONFIG
             }
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::HAS_CONFIG,
-            Self::JsxA11YInteractiveSupportsFocus(_) => JsxA11YInteractiveSupportsFocus::HAS_CONFIG,
             Self::JsxA11YAltText(_) => JsxA11YAltText::HAS_CONFIG,
             Self::JsxA11YAnchorAmbiguousText(_) => JsxA11YAnchorAmbiguousText::HAS_CONFIG,
             Self::JsxA11YAnchorHasContent(_) => JsxA11YAnchorHasContent::HAS_CONFIG,
@@ -19172,6 +19172,7 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(_) => JsxA11YHtmlHasLang::HAS_CONFIG,
             Self::JsxA11YIframeHasTitle(_) => JsxA11YIframeHasTitle::HAS_CONFIG,
             Self::JsxA11YImgRedundantAlt(_) => JsxA11YImgRedundantAlt::HAS_CONFIG,
+            Self::JsxA11YInteractiveSupportsFocus(_) => JsxA11YInteractiveSupportsFocus::HAS_CONFIG,
             Self::JsxA11YLabelHasAssociatedControl(_) => {
                 JsxA11YLabelHasAssociatedControl::HAS_CONFIG
             }
@@ -19947,7 +19948,6 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(rule) => rule.types_info(),
             Self::UnicornTextEncodingIdentifierCase(rule) => rule.types_info(),
             Self::UnicornThrowNewError(rule) => rule.types_info(),
-            Self::JsxA11YInteractiveSupportsFocus(rule) => rule.types_info(),
             Self::JsxA11YAltText(rule) => rule.types_info(),
             Self::JsxA11YAnchorAmbiguousText(rule) => rule.types_info(),
             Self::JsxA11YAnchorHasContent(rule) => rule.types_info(),
@@ -19963,6 +19963,7 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(rule) => rule.types_info(),
             Self::JsxA11YIframeHasTitle(rule) => rule.types_info(),
             Self::JsxA11YImgRedundantAlt(rule) => rule.types_info(),
+            Self::JsxA11YInteractiveSupportsFocus(rule) => rule.types_info(),
             Self::JsxA11YLabelHasAssociatedControl(rule) => rule.types_info(),
             Self::JsxA11YLang(rule) => rule.types_info(),
             Self::JsxA11YMediaHasCaption(rule) => rule.types_info(),
@@ -20714,7 +20715,6 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(rule) => rule.run_info(),
             Self::UnicornTextEncodingIdentifierCase(rule) => rule.run_info(),
             Self::UnicornThrowNewError(rule) => rule.run_info(),
-            Self::JsxA11YInteractiveSupportsFocus(rule) => rule.run_info(),
             Self::JsxA11YAltText(rule) => rule.run_info(),
             Self::JsxA11YAnchorAmbiguousText(rule) => rule.run_info(),
             Self::JsxA11YAnchorHasContent(rule) => rule.run_info(),
@@ -20730,6 +20730,7 @@ impl RuleEnum {
             Self::JsxA11YHtmlHasLang(rule) => rule.run_info(),
             Self::JsxA11YIframeHasTitle(rule) => rule.run_info(),
             Self::JsxA11YImgRedundantAlt(rule) => rule.run_info(),
+            Self::JsxA11YInteractiveSupportsFocus(rule) => rule.run_info(),
             Self::JsxA11YLabelHasAssociatedControl(rule) => rule.run_info(),
             Self::JsxA11YLang(rule) => rule.run_info(),
             Self::JsxA11YMediaHasCaption(rule) => rule.run_info(),
@@ -21597,7 +21598,6 @@ pub static RULES: std::sync::LazyLock<Vec<RuleEnum>> = std::sync::LazyLock::new(
         RuleEnum::UnicornSwitchCaseBreakPosition(UnicornSwitchCaseBreakPosition::default()),
         RuleEnum::UnicornTextEncodingIdentifierCase(UnicornTextEncodingIdentifierCase::default()),
         RuleEnum::UnicornThrowNewError(UnicornThrowNewError::default()),
-        RuleEnum::JsxA11YInteractiveSupportsFocus(JsxA11YInteractiveSupportsFocus::default()),
         RuleEnum::JsxA11YAltText(JsxA11YAltText::default()),
         RuleEnum::JsxA11YAnchorAmbiguousText(JsxA11YAnchorAmbiguousText::default()),
         RuleEnum::JsxA11YAnchorHasContent(JsxA11YAnchorHasContent::default()),
@@ -21615,6 +21615,7 @@ pub static RULES: std::sync::LazyLock<Vec<RuleEnum>> = std::sync::LazyLock::new(
         RuleEnum::JsxA11YHtmlHasLang(JsxA11YHtmlHasLang::default()),
         RuleEnum::JsxA11YIframeHasTitle(JsxA11YIframeHasTitle::default()),
         RuleEnum::JsxA11YImgRedundantAlt(JsxA11YImgRedundantAlt::default()),
+        RuleEnum::JsxA11YInteractiveSupportsFocus(JsxA11YInteractiveSupportsFocus::default()),
         RuleEnum::JsxA11YLabelHasAssociatedControl(JsxA11YLabelHasAssociatedControl::default()),
         RuleEnum::JsxA11YLang(JsxA11YLang::default()),
         RuleEnum::JsxA11YMediaHasCaption(JsxA11YMediaHasCaption::default()),

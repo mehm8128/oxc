@@ -3682,11 +3682,6 @@ impl RuleRunner for crate::rules::unicorn::throw_new_error::ThrowNewError {
     const RUN_FUNCTIONS: RuleRunFunctionsImplemented = RuleRunFunctionsImplemented::Run;
 }
 
-impl RuleRunner for crate::rules::jsx_a11y::interactive_supports_focus::InteractiveSupportsFocus {
-    const NODE_TYPES: Option<&AstTypesBitset> = None;
-    const RUN_FUNCTIONS: RuleRunFunctionsImplemented = RuleRunFunctionsImplemented::Run;
-}
-
 impl RuleRunner for crate::rules::jsx_a11y::alt_text::AltText {
     const NODE_TYPES: Option<&AstTypesBitset> =
         Some(&AstTypesBitset::from_types(&[AstType::JSXOpeningElement]));
@@ -3774,6 +3769,12 @@ impl RuleRunner for crate::rules::jsx_a11y::iframe_has_title::IframeHasTitle {
 }
 
 impl RuleRunner for crate::rules::jsx_a11y::img_redundant_alt::ImgRedundantAlt {
+    const NODE_TYPES: Option<&AstTypesBitset> =
+        Some(&AstTypesBitset::from_types(&[AstType::JSXOpeningElement]));
+    const RUN_FUNCTIONS: RuleRunFunctionsImplemented = RuleRunFunctionsImplemented::Run;
+}
+
+impl RuleRunner for crate::rules::jsx_a11y::interactive_supports_focus::InteractiveSupportsFocus {
     const NODE_TYPES: Option<&AstTypesBitset> =
         Some(&AstTypesBitset::from_types(&[AstType::JSXOpeningElement]));
     const RUN_FUNCTIONS: RuleRunFunctionsImplemented = RuleRunFunctionsImplemented::Run;
