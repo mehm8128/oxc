@@ -349,10 +349,10 @@ source: crates/oxc_linter/src/tester.rs
 
   ⚠ vitest(valid-title): Should not have leading or trailing spaces
    ╭─[valid_title.tsx:4:26]
- 3 │ 
+ 3 │
  4 │                 testThat('foo works ', () => {});
    ·                          ────────────
- 5 │             
+ 5 │
    ╰────
   help: Remove the leading or trailing spaces
 
@@ -435,7 +435,7 @@ source: crates/oxc_linter/src/tester.rs
 
   ⚠ vitest(valid-title): Should not have leading or trailing spaces
    ╭─[valid_title.tsx:2:26]
- 1 │ 
+ 1 │
  2 │                 describe(' foo', () => {
    ·                          ──────
  3 │                     it('bar', () => {})
@@ -544,7 +544,7 @@ source: crates/oxc_linter/src/tester.rs
 
   ⚠ vitest(valid-title): Should not have duplicate prefix
    ╭─[valid_title.tsx:2:26]
- 1 │ 
+ 1 │
  2 │                 describe('describe foo', () => {
    ·                          ──────────────
  3 │                     it('bar', () => {})
@@ -553,7 +553,7 @@ source: crates/oxc_linter/src/tester.rs
 
   ⚠ vitest(valid-title): Should not have duplicate prefix
    ╭─[valid_title.tsx:2:26]
- 1 │ 
+ 1 │
  2 │                 describe('describe foo', () => {
    ·                          ──────────────
  3 │                     it('describes things correctly', () => {})
