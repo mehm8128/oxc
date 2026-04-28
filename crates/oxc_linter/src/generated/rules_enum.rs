@@ -321,6 +321,7 @@ pub use crate::rules::jsx_a11y::no_access_key::NoAccessKey as JsxA11YNoAccessKey
 pub use crate::rules::jsx_a11y::no_aria_hidden_on_focusable::NoAriaHiddenOnFocusable as JsxA11YNoAriaHiddenOnFocusable;
 pub use crate::rules::jsx_a11y::no_autofocus::NoAutofocus as JsxA11YNoAutofocus;
 pub use crate::rules::jsx_a11y::no_distracting_elements::NoDistractingElements as JsxA11YNoDistractingElements;
+pub use crate::rules::jsx_a11y::no_interactive_element_to_noninteractive_role::NoInteractiveElementToNoninteractiveRole as JsxA11YNoInteractiveElementToNoninteractiveRole;
 pub use crate::rules::jsx_a11y::no_noninteractive_element_to_interactive_role::NoNoninteractiveElementToInteractiveRole as JsxA11YNoNoninteractiveElementToInteractiveRole;
 pub use crate::rules::jsx_a11y::no_noninteractive_tabindex::NoNoninteractiveTabindex as JsxA11YNoNoninteractiveTabindex;
 pub use crate::rules::jsx_a11y::no_redundant_roles::NoRedundantRoles as JsxA11YNoRedundantRoles;
@@ -1379,6 +1380,9 @@ pub enum RuleEnum {
     UnicornSwitchCaseBreakPosition(UnicornSwitchCaseBreakPosition),
     UnicornTextEncodingIdentifierCase(UnicornTextEncodingIdentifierCase),
     UnicornThrowNewError(UnicornThrowNewError),
+    JsxA11YNoInteractiveElementToNoninteractiveRole(
+        JsxA11YNoInteractiveElementToNoninteractiveRole,
+    ),
     JsxA11YAltText(JsxA11YAltText),
     JsxA11YAnchorAmbiguousText(JsxA11YAnchorAmbiguousText),
     JsxA11YAnchorHasContent(JsxA11YAnchorHasContent),
@@ -2247,7 +2251,10 @@ const UNICORN_SWITCH_CASE_BREAK_POSITION_ID: usize = UNICORN_SWITCH_CASE_BRACES_
 const UNICORN_TEXT_ENCODING_IDENTIFIER_CASE_ID: usize =
     UNICORN_SWITCH_CASE_BREAK_POSITION_ID + 1usize;
 const UNICORN_THROW_NEW_ERROR_ID: usize = UNICORN_TEXT_ENCODING_IDENTIFIER_CASE_ID + 1usize;
-const JSX_A_11_Y_ALT_TEXT_ID: usize = UNICORN_THROW_NEW_ERROR_ID + 1usize;
+const JSX_A_11_Y_NO_INTERACTIVE_ELEMENT_TO_NONINTERACTIVE_ROLE_ID: usize =
+    UNICORN_THROW_NEW_ERROR_ID + 1usize;
+const JSX_A_11_Y_ALT_TEXT_ID: usize =
+    JSX_A_11_Y_NO_INTERACTIVE_ELEMENT_TO_NONINTERACTIVE_ROLE_ID + 1usize;
 const JSX_A_11_Y_ANCHOR_AMBIGUOUS_TEXT_ID: usize = JSX_A_11_Y_ALT_TEXT_ID + 1usize;
 const JSX_A_11_Y_ANCHOR_HAS_CONTENT_ID: usize = JSX_A_11_Y_ANCHOR_AMBIGUOUS_TEXT_ID + 1usize;
 const JSX_A_11_Y_ANCHOR_IS_VALID_ID: usize = JSX_A_11_Y_ANCHOR_HAS_CONTENT_ID + 1usize;
@@ -3162,6 +3169,9 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(_) => UNICORN_SWITCH_CASE_BREAK_POSITION_ID,
             Self::UnicornTextEncodingIdentifierCase(_) => UNICORN_TEXT_ENCODING_IDENTIFIER_CASE_ID,
             Self::UnicornThrowNewError(_) => UNICORN_THROW_NEW_ERROR_ID,
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(_) => {
+                JSX_A_11_Y_NO_INTERACTIVE_ELEMENT_TO_NONINTERACTIVE_ROLE_ID
+            }
             Self::JsxA11YAltText(_) => JSX_A_11_Y_ALT_TEXT_ID,
             Self::JsxA11YAnchorAmbiguousText(_) => JSX_A_11_Y_ANCHOR_AMBIGUOUS_TEXT_ID,
             Self::JsxA11YAnchorHasContent(_) => JSX_A_11_Y_ANCHOR_HAS_CONTENT_ID,
@@ -4065,6 +4075,9 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(_) => UnicornSwitchCaseBreakPosition::NAME,
             Self::UnicornTextEncodingIdentifierCase(_) => UnicornTextEncodingIdentifierCase::NAME,
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::NAME,
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(_) => {
+                JsxA11YNoInteractiveElementToNoninteractiveRole::NAME
+            }
             Self::JsxA11YAltText(_) => JsxA11YAltText::NAME,
             Self::JsxA11YAnchorAmbiguousText(_) => JsxA11YAnchorAmbiguousText::NAME,
             Self::JsxA11YAnchorHasContent(_) => JsxA11YAnchorHasContent::NAME,
@@ -5004,6 +5017,9 @@ impl RuleEnum {
                 UnicornTextEncodingIdentifierCase::CATEGORY
             }
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::CATEGORY,
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(_) => {
+                JsxA11YNoInteractiveElementToNoninteractiveRole::CATEGORY
+            }
             Self::JsxA11YAltText(_) => JsxA11YAltText::CATEGORY,
             Self::JsxA11YAnchorAmbiguousText(_) => JsxA11YAnchorAmbiguousText::CATEGORY,
             Self::JsxA11YAnchorHasContent(_) => JsxA11YAnchorHasContent::CATEGORY,
@@ -5916,6 +5932,9 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(_) => UnicornSwitchCaseBreakPosition::FIX,
             Self::UnicornTextEncodingIdentifierCase(_) => UnicornTextEncodingIdentifierCase::FIX,
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::FIX,
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(_) => {
+                JsxA11YNoInteractiveElementToNoninteractiveRole::FIX
+            }
             Self::JsxA11YAltText(_) => JsxA11YAltText::FIX,
             Self::JsxA11YAnchorAmbiguousText(_) => JsxA11YAnchorAmbiguousText::FIX,
             Self::JsxA11YAnchorHasContent(_) => JsxA11YAnchorHasContent::FIX,
@@ -6992,6 +7011,9 @@ impl RuleEnum {
                 UnicornTextEncodingIdentifierCase::documentation()
             }
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::documentation(),
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(_) => {
+                JsxA11YNoInteractiveElementToNoninteractiveRole::documentation()
+            }
             Self::JsxA11YAltText(_) => JsxA11YAltText::documentation(),
             Self::JsxA11YAnchorAmbiguousText(_) => JsxA11YAnchorAmbiguousText::documentation(),
             Self::JsxA11YAnchorHasContent(_) => JsxA11YAnchorHasContent::documentation(),
@@ -8948,6 +8970,10 @@ impl RuleEnum {
             }
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::config_schema(generator)
                 .or_else(|| UnicornThrowNewError::schema(generator)),
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(_) => {
+                JsxA11YNoInteractiveElementToNoninteractiveRole::config_schema(generator)
+                    .or_else(|| JsxA11YNoInteractiveElementToNoninteractiveRole::schema(generator))
+            }
             Self::JsxA11YAltText(_) => JsxA11YAltText::config_schema(generator)
                 .or_else(|| JsxA11YAltText::schema(generator)),
             Self::JsxA11YAnchorAmbiguousText(_) => {
@@ -10119,6 +10145,7 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(_) => "unicorn",
             Self::UnicornTextEncodingIdentifierCase(_) => "unicorn",
             Self::UnicornThrowNewError(_) => "unicorn",
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(_) => "jsx_a11y",
             Self::JsxA11YAltText(_) => "jsx_a11y",
             Self::JsxA11YAnchorAmbiguousText(_) => "jsx_a11y",
             Self::JsxA11YAnchorHasContent(_) => "jsx_a11y",
@@ -12201,6 +12228,11 @@ impl RuleEnum {
             Self::UnicornThrowNewError(_) => {
                 Ok(Self::UnicornThrowNewError(UnicornThrowNewError::from_configuration(value)?))
             }
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(_) => {
+                Ok(Self::JsxA11YNoInteractiveElementToNoninteractiveRole(
+                    JsxA11YNoInteractiveElementToNoninteractiveRole::from_configuration(value)?,
+                ))
+            }
             Self::JsxA11YAltText(_) => {
                 Ok(Self::JsxA11YAltText(JsxA11YAltText::from_configuration(value)?))
             }
@@ -13452,6 +13484,7 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(rule) => rule.to_configuration(),
             Self::UnicornTextEncodingIdentifierCase(rule) => rule.to_configuration(),
             Self::UnicornThrowNewError(rule) => rule.to_configuration(),
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(rule) => rule.to_configuration(),
             Self::JsxA11YAltText(rule) => rule.to_configuration(),
             Self::JsxA11YAnchorAmbiguousText(rule) => rule.to_configuration(),
             Self::JsxA11YAnchorHasContent(rule) => rule.to_configuration(),
@@ -14245,6 +14278,7 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(rule) => rule.run(node, ctx),
             Self::UnicornTextEncodingIdentifierCase(rule) => rule.run(node, ctx),
             Self::UnicornThrowNewError(rule) => rule.run(node, ctx),
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(rule) => rule.run(node, ctx),
             Self::JsxA11YAltText(rule) => rule.run(node, ctx),
             Self::JsxA11YAnchorAmbiguousText(rule) => rule.run(node, ctx),
             Self::JsxA11YAnchorHasContent(rule) => rule.run(node, ctx),
@@ -15036,6 +15070,7 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(rule) => rule.run_once(ctx),
             Self::UnicornTextEncodingIdentifierCase(rule) => rule.run_once(ctx),
             Self::UnicornThrowNewError(rule) => rule.run_once(ctx),
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(rule) => rule.run_once(ctx),
             Self::JsxA11YAltText(rule) => rule.run_once(ctx),
             Self::JsxA11YAnchorAmbiguousText(rule) => rule.run_once(ctx),
             Self::JsxA11YAnchorHasContent(rule) => rule.run_once(ctx),
@@ -15925,6 +15960,9 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(rule) => rule.run_on_jest_node(jest_node, ctx),
             Self::UnicornTextEncodingIdentifierCase(rule) => rule.run_on_jest_node(jest_node, ctx),
             Self::UnicornThrowNewError(rule) => rule.run_on_jest_node(jest_node, ctx),
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(rule) => {
+                rule.run_on_jest_node(jest_node, ctx)
+            }
             Self::JsxA11YAltText(rule) => rule.run_on_jest_node(jest_node, ctx),
             Self::JsxA11YAnchorAmbiguousText(rule) => rule.run_on_jest_node(jest_node, ctx),
             Self::JsxA11YAnchorHasContent(rule) => rule.run_on_jest_node(jest_node, ctx),
@@ -16728,6 +16766,7 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(rule) => rule.should_run(ctx),
             Self::UnicornTextEncodingIdentifierCase(rule) => rule.should_run(ctx),
             Self::UnicornThrowNewError(rule) => rule.should_run(ctx),
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(rule) => rule.should_run(ctx),
             Self::JsxA11YAltText(rule) => rule.should_run(ctx),
             Self::JsxA11YAnchorAmbiguousText(rule) => rule.should_run(ctx),
             Self::JsxA11YAnchorHasContent(rule) => rule.should_run(ctx),
@@ -17791,6 +17830,9 @@ impl RuleEnum {
                 UnicornTextEncodingIdentifierCase::IS_TSGOLINT_RULE
             }
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::IS_TSGOLINT_RULE,
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(_) => {
+                JsxA11YNoInteractiveElementToNoninteractiveRole::IS_TSGOLINT_RULE
+            }
             Self::JsxA11YAltText(_) => JsxA11YAltText::IS_TSGOLINT_RULE,
             Self::JsxA11YAnchorAmbiguousText(_) => JsxA11YAnchorAmbiguousText::IS_TSGOLINT_RULE,
             Self::JsxA11YAnchorHasContent(_) => JsxA11YAnchorHasContent::IS_TSGOLINT_RULE,
@@ -18792,6 +18834,9 @@ impl RuleEnum {
                 UnicornTextEncodingIdentifierCase::VERSION
             }
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::VERSION,
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(_) => {
+                JsxA11YNoInteractiveElementToNoninteractiveRole::VERSION
+            }
             Self::JsxA11YAltText(_) => JsxA11YAltText::VERSION,
             Self::JsxA11YAnchorAmbiguousText(_) => JsxA11YAnchorAmbiguousText::VERSION,
             Self::JsxA11YAnchorHasContent(_) => JsxA11YAnchorHasContent::VERSION,
@@ -19772,6 +19817,9 @@ impl RuleEnum {
                 UnicornTextEncodingIdentifierCase::HAS_CONFIG
             }
             Self::UnicornThrowNewError(_) => UnicornThrowNewError::HAS_CONFIG,
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(_) => {
+                JsxA11YNoInteractiveElementToNoninteractiveRole::HAS_CONFIG
+            }
             Self::JsxA11YAltText(_) => JsxA11YAltText::HAS_CONFIG,
             Self::JsxA11YAnchorAmbiguousText(_) => JsxA11YAnchorAmbiguousText::HAS_CONFIG,
             Self::JsxA11YAnchorHasContent(_) => JsxA11YAnchorHasContent::HAS_CONFIG,
@@ -20597,6 +20645,7 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(rule) => rule.types_info(),
             Self::UnicornTextEncodingIdentifierCase(rule) => rule.types_info(),
             Self::UnicornThrowNewError(rule) => rule.types_info(),
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(rule) => rule.types_info(),
             Self::JsxA11YAltText(rule) => rule.types_info(),
             Self::JsxA11YAnchorAmbiguousText(rule) => rule.types_info(),
             Self::JsxA11YAnchorHasContent(rule) => rule.types_info(),
@@ -21388,6 +21437,7 @@ impl RuleEnum {
             Self::UnicornSwitchCaseBreakPosition(rule) => rule.run_info(),
             Self::UnicornTextEncodingIdentifierCase(rule) => rule.run_info(),
             Self::UnicornThrowNewError(rule) => rule.run_info(),
+            Self::JsxA11YNoInteractiveElementToNoninteractiveRole(rule) => rule.run_info(),
             Self::JsxA11YAltText(rule) => rule.run_info(),
             Self::JsxA11YAnchorAmbiguousText(rule) => rule.run_info(),
             Self::JsxA11YAnchorHasContent(rule) => rule.run_info(),
@@ -22295,6 +22345,9 @@ pub static RULES: std::sync::LazyLock<Vec<RuleEnum>> = std::sync::LazyLock::new(
         RuleEnum::UnicornSwitchCaseBreakPosition(UnicornSwitchCaseBreakPosition::default()),
         RuleEnum::UnicornTextEncodingIdentifierCase(UnicornTextEncodingIdentifierCase::default()),
         RuleEnum::UnicornThrowNewError(UnicornThrowNewError::default()),
+        RuleEnum::JsxA11YNoInteractiveElementToNoninteractiveRole(
+            JsxA11YNoInteractiveElementToNoninteractiveRole::default(),
+        ),
         RuleEnum::JsxA11YAltText(JsxA11YAltText::default()),
         RuleEnum::JsxA11YAnchorAmbiguousText(JsxA11YAnchorAmbiguousText::default()),
         RuleEnum::JsxA11YAnchorHasContent(JsxA11YAnchorHasContent::default()),
