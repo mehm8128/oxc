@@ -88,7 +88,7 @@ source: crates/oxc_linter/src/tester.rs
 
   ⚠ vitest(expect-expect): Test has no assertions
    ╭─[expect_expect.tsx:4:17]
- 3 │
+ 3 │ 
  4 │                 checkThat('this passes', () => {
    ·                 ─────────
  5 │                     // ...
