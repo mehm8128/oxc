@@ -305,7 +305,7 @@ const NON_INTERACTIVE_ELEMENT_TYPES: [&str; 59] = [
     "ul",
 ];
 
-const INTERACTIVE_ROLES: [&str; 31] = [
+const WIDGET_DESCENDANT_ROLES: [&str; 30] = [
     "button",
     "checkbox",
     "columnheader",
@@ -333,16 +333,12 @@ const INTERACTIVE_ROLES: [&str; 31] = [
     "tab",
     "tablist",
     "textbox",
-    // Per the original rule:
-    // > 'toolbar' does not descend from widget, but it does support
-    // > aria-activedescendant, thus in practice we treat it as a widget.
-    "toolbar",
     "tree",
     "treegrid",
     "treeitem",
 ];
 
-const NON_INTERACTIVE_ROLES: [&str; 43] = [
+const NON_WIDGET_DESCENDANT_ROLES: [&str; 42] = [
     "alert",
     "alertdialog",
     "application",
@@ -371,15 +367,11 @@ const NON_INTERACTIVE_ROLES: [&str; 43] = [
     "main",
     "marquee",
     "math",
+    "meter",
     "navigation",
     "note",
     "paragraph",
-    // per the original impl:
-    // >  The `progressbar` is descended from `widget`, but in practice, its
-    // > value is always `readonly`, so we treat it as a non-interactive role.
-    "progressbar",
     "region",
-    "row",
     "rowgroup",
     "search",
     "status",
@@ -390,6 +382,26 @@ const NON_INTERACTIVE_ROLES: [&str; 43] = [
     "timer",
     "tooltip",
 ];
+
+// ref: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/8f75961d965e47afb88854d324bd32fafde7acfe/src/util/isInteractiveRole.js
+pub fn is_interactive_role(role: &str) -> bool {
+    match role {
+        // 'toolbar' does not descend from widget, but it does support
+        // aria-activedescendant, thus in practice we treat it as interactive.
+        "toolbar" => true,
+        _ => WIDGET_DESCENDANT_ROLES.contains(&role),
+    }
+}
+
+// ref: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/8f75961d965e47afb88854d324bd32fafde7acfe/src/util/isInteractiveRole.js
+pub fn is_non_interactive_role(role: &str) -> bool {
+    match role {
+        // 'progressbar' is descended from widget, but in practice, its
+        // value is always readonly, so we treat it as non-interactive.
+        "progressbar" => true,
+        _ => NON_WIDGET_DESCENDANT_ROLES.contains(&role),
+    }
+}
 
 /// Mapping of HTML elements to their implicit ARIA roles.
 ///
@@ -508,16 +520,6 @@ pub fn get_tags_for_role(role: &str) -> Vec<&'static str> {
         }
     }
     tags
-}
-
-// ref: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/8f75961d965e47afb88854d324bd32fafde7acfe/src/util/isInteractiveRole.js
-pub fn is_interactive_role(role: &str) -> bool {
-    INTERACTIVE_ROLES.contains(&role)
-}
-
-// ref: https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/8f75961d965e47afb88854d324bd32fafde7acfe/src/util/isInteractiveRole.js
-pub fn is_non_interactive_role(role: &str) -> bool {
-    NON_INTERACTIVE_ROLES.contains(&role)
 }
 
 pub const MOUSE_EVENT_HANDLERS: &[&str] = &[
