@@ -58,13 +58,6 @@ source: crates/oxc_linter/src/tester.rs
    ╰────
   help: Remove the redundant role `button` from the element `button`.
 
-  ⚠ jsx-a11y(no-redundant-roles): The `body` element has an implicit role of `document`. Defining this explicitly is redundant and should be avoided.
-   ╭─[no_redundant_roles.tsx:1:7]
- 1 │ <body role='document' />
-   ·       ───────────────
-   ╰────
-  help: Remove the redundant role `document` from the element `body`.
-
   ⚠ jsx-a11y(no-redundant-roles): The `nav` element has an implicit role of `navigation`. Defining this explicitly is redundant and should be avoided.
    ╭─[no_redundant_roles.tsx:1:6]
  1 │ <nav role='navigation' />

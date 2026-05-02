@@ -41,20 +41,20 @@ declare_oxc_lint!(
     ///
     /// - `<nav>`: `navigation`
     /// - `<button>`: `button`
-    /// - `<body>`: `document`
+    /// - `<main>`: `main`
     ///
     /// Examples of **incorrect** code for this rule:
     /// ```jsx
     /// <nav role="navigation"></nav>
     /// <button role="button"></button>
-    /// <body role="document"></body>
+    /// <main role="main"></main>
     /// ```
     ///
     /// Examples of **correct** code for this rule:
     /// ```jsx
     /// <nav></nav>
     /// <button></button>
-    /// <body></body>
+    /// <main></main>
     /// ```
     NoRedundantRoles,
     jsx_a11y,
@@ -109,7 +109,7 @@ fn test() {
         ("<button>Foo</button>", None, None),
         ("<button>role</button>", None, None),
         ("<nav />", None, None),
-        ("<body />", None, None),
+        ("<main />", None, None),
         ("<button role='main' />", None, None),
         ("<MyComponent role='button' />", None, None),
         ("<button role={`${foo}button`} />", None, None),
@@ -126,7 +126,6 @@ fn test() {
         ("<button role='button'>Foo</button>", None, None),
         ("<button role='button'><p>Test</p></button>", None, None),
         ("<button role='button' title='button'></button>", None, None),
-        ("<body role='document' />", None, None),
         ("<nav role='navigation' />", None, None),
         ("<Button role='button' />", None, Some(settings())),
         (r#"<article role="article" />"#, None, None),
@@ -173,10 +172,10 @@ fn test() {
              </button>",
         ),
         ("<nav role='navigation' />", "<nav  />"),
-        ("<body role='document' />", "<body  />"),
+        ("<main role='main' />", "<main  />"),
         (
-            "<body role='document'><p>Foobarbaz!! document body role</p></body>",
-            "<body ><p>Foobarbaz!! document body role</p></body>",
+            "<main role='main'><p>Foobarbaz!!  main role</p></main>",
+            "<main ><p>Foobarbaz!!  main role</p></main>",
         ),
     ];
 
