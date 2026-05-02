@@ -18,8 +18,8 @@ use crate::{
     rule::{DefaultRuleConfig, Rule},
     utils::{
         get_element_type, get_prop_value, has_jsx_prop, has_jsx_prop_ignore_case, is_abstract_role,
-        is_hidden_from_screen_reader, is_interactive_element, is_interactive_role,
-        is_non_interactive_element, is_non_interactive_role, is_presentation_role,
+        is_hidden_from_screen_reader, is_interactive_role, is_non_interactive_role,
+        is_presentation_role, is_static_element,
     },
 };
 
@@ -120,15 +120,10 @@ impl Rule for NoStaticElementInteractions {
             return;
         }
 
-        if is_hidden_from_screen_reader(ctx, jsx_el) || is_presentation_role(jsx_el) {
-            return;
-        }
-
-        if is_interactive_element(&element_type, jsx_el) {
-            return;
-        }
-
-        if is_non_interactive_element(&element_type, jsx_el) {
+        if is_hidden_from_screen_reader(ctx, jsx_el)
+            || is_presentation_role(jsx_el)
+            || !is_static_element(&element_type, jsx_el)
+        {
             return;
         }
 
@@ -142,7 +137,6 @@ impl Rule for NoStaticElementInteractions {
             ctx.diagnostic(no_static_element_interactions_diagnostic(jsx_el.name.span()));
             return;
         };
-
         let Some(role_value) = &role_attr.value else {
             ctx.diagnostic(no_static_element_interactions_diagnostic(jsx_el.name.span()));
             return;
@@ -153,13 +147,10 @@ impl Rule for NoStaticElementInteractions {
                 let role_str = role.value.as_str().cow_to_lowercase();
                 let roles: Vec<&str> = role_str.split_whitespace().collect();
 
-                if let Some(first_role) = roles.first() {
-                    if is_interactive_role(first_role) {
-                        return;
-                    }
-                    if is_non_interactive_role(first_role) {
-                        return;
-                    }
+                if let Some(first_role) = roles.first()
+                    && (is_interactive_role(first_role) || is_non_interactive_role(first_role))
+                {
+                    return;
                 }
             }
             JSXAttributeValue::ExpressionContainer(_) if self.allow_expression_values => {

@@ -193,17 +193,17 @@ pub fn is_abstract_role<'a>(ctx: &LintContext<'a>, jsx_opening_el: &JSXOpeningEl
 //
 // See also https://html.spec.whatwg.org/multipage/dom.html#interactive-content
 pub fn is_interactive_element(element_type: &str, jsx_opening_el: &JSXOpeningElement) -> bool {
-    // Interactive contents are...
-    // - a, area (when they have `href`)
-    // - audio, video
-    // - button, canvas, datalist, details, embed, iframe, label, menuitem,
-    //   option, select, summary, textarea, td, th, tr
-    // - input (unless `type` is hidden)
-    // - img (when `usemap` is present)
+    // Do not test custom JSX components, we do not know what
+    // low-level DOM element this maps to.
+    if !HTML_TAG.contains(element_type.as_ref()) {
+        return false;
+    }
+
     match element_type {
-        "audio" | "button" | "canvas" | "datalist" | "details" | "embed" | "iframe" | "label"
-        | "menuitem" | "option" | "select" | "summary" | "td" | "th" | "tr" | "textarea"
-        | "video" => true,
+        // 	No corresponding role, but they inherit widget role as AXObject
+        "audio" | "canvas" | "datalist" | "embed" | "menuitem" | "select" | "summary" | "video" => {
+            true
+        }
         "input" => {
             if let Some(input_type) = has_jsx_prop(jsx_opening_el, "type")
                 && get_string_literal_prop_value(input_type)
@@ -215,7 +215,7 @@ pub fn is_interactive_element(element_type: &str, jsx_opening_el: &JSXOpeningEle
         }
         "a" | "area" => has_jsx_prop(jsx_opening_el, "href").is_some(),
         "img" => has_jsx_prop(jsx_opening_el, "usemap").is_some(),
-        _ => false,
+        _ => get_element_implicit_roles(element_type).iter().any(|role| is_interactive_role(role)),
     }
 }
 
@@ -238,72 +238,24 @@ pub fn is_non_interactive_element(element_type: &str, jsx_opening_el: &JSXOpenin
             has_jsx_prop_ignore_case(jsx_opening_el, "aria-label").is_some()
                 || has_jsx_prop_ignore_case(jsx_opening_el, "aria-labelledby").is_some()
         }
-        _ => NON_INTERACTIVE_ELEMENT_TYPES.contains(&element_type),
+        // No corresponding role, but they don't inherit widget role as AXObject
+        "dd" | "dt" | "iframe" | "label" | "br" | "dir" | "dl" | "figcaption" | "html"
+        | "legend" | "mark" | "marquee" | "pre" | "ruby" => true,
+        _ => get_element_implicit_roles(element_type)
+            .iter()
+            .any(|role| is_non_interactive_role(role)),
     }
 }
 
-// Based on https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/8f75961d965e47afb88854d324bd32fafde7acfe/src/util/isNonInteractiveElement.js
-const NON_INTERACTIVE_ELEMENT_TYPES: [&str; 59] = [
-    "abbr",
-    "address",
-    "article",
-    "aside",
-    "blockquote",
-    "br",
-    "caption",
-    "code",
-    "dd",
-    "del",
-    "details",
-    "dfn",
-    "dialog",
-    "dir",
-    "dl",
-    "dt",
-    "em",
-    "fieldset",
-    "figcaption",
-    "figure",
-    "footer",
-    "form",
-    "h1",
-    "h2",
-    "h3",
-    "h4",
-    "h5",
-    "h6",
-    "hr",
-    "html",
-    "iframe",
-    "img",
-    "ins",
-    "label",
-    "legend",
-    "li",
-    "main",
-    "mark",
-    "marquee",
-    "menu",
-    "meter",
-    "nav",
-    "ol",
-    "optgroup",
-    "output",
-    "p",
-    "pre",
-    "progress",
-    "ruby",
-    "section",
-    "strong",
-    "sub",
-    "sup",
-    "table",
-    "tbody",
-    "tfoot",
-    "thead",
-    "time",
-    "ul",
-];
+pub fn is_static_element(element_type: &str, jsx_opening_el: &JSXOpeningElement) -> bool {
+    match element_type {
+        "hgroup" | "s" => true,
+        _ => {
+            !is_interactive_element(element_type, jsx_opening_el)
+                && !is_non_interactive_element(element_type, jsx_opening_el)
+        }
+    }
+}
 
 const WIDGET_DESCENDANT_ROLES: [&str; 30] = [
     "button",
@@ -338,15 +290,17 @@ const WIDGET_DESCENDANT_ROLES: [&str; 30] = [
     "treeitem",
 ];
 
-const NON_WIDGET_DESCENDANT_ROLES: [&str; 42] = [
+const NON_WIDGET_DESCENDANT_ROLES: [&str; 49] = [
     "alert",
     "alertdialog",
     "application",
     "article",
     "banner",
+    "definition",
     "blockquote",
     "caption",
     "cell",
+    "code",
     "complementary",
     "contentinfo",
     "definition",
@@ -354,6 +308,7 @@ const NON_WIDGET_DESCENDANT_ROLES: [&str; 42] = [
     "dialog",
     "directory",
     "document",
+    "emphasis",
     "feed",
     "figure",
     "form",
@@ -365,6 +320,7 @@ const NON_WIDGET_DESCENDANT_ROLES: [&str; 42] = [
     "listitem",
     "log",
     "main",
+    "mark",
     "marquee",
     "math",
     "meter",
@@ -375,6 +331,9 @@ const NON_WIDGET_DESCENDANT_ROLES: [&str; 42] = [
     "rowgroup",
     "search",
     "status",
+    "strong",
+    "subscript",
+    "superscript",
     "table",
     "tabpanel",
     "term",
