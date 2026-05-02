@@ -165,13 +165,6 @@ source: crates/oxc_linter/src/tester.rs
 
   ⚠ jsx-a11y(control-has-associated-label): A control must be associated with a text label.
    ╭─[control_has_associated_label.tsx:1:1]
- 1 │ <div role="progressbar" />
-   · ──────────────────────────
-   ╰────
-  help: Add a text label to the control element. This can be done by adding text content, an `aria-label` attribute, or an `aria-labelledby` attribute.
-
-  ⚠ jsx-a11y(control-has-associated-label): A control must be associated with a text label.
-   ╭─[control_has_associated_label.tsx:1:1]
  1 │ <div role="radio" />
    · ────────────────────
    ╰────
@@ -194,6 +187,13 @@ source: crates/oxc_linter/src/tester.rs
   ⚠ jsx-a11y(control-has-associated-label): A control must be associated with a text label.
    ╭─[control_has_associated_label.tsx:1:1]
  1 │ <div role="searchbox" />
+   · ────────────────────────
+   ╰────
+  help: Add a text label to the control element. This can be done by adding text content, an `aria-label` attribute, or an `aria-labelledby` attribute.
+
+  ⚠ jsx-a11y(control-has-associated-label): A control must be associated with a text label.
+   ╭─[control_has_associated_label.tsx:1:1]
+ 1 │ <div role="separator" />
    · ────────────────────────
    ╰────
   help: Add a text label to the control element. This can be done by adding text content, an `aria-label` attribute, or an `aria-labelledby` attribute.
