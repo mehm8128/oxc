@@ -299,7 +299,7 @@ fn test_recommended() {
     // Generated from jsx-eslint/eslint-plugin-jsx-a11y __tests__/src/rules/control-has-associated-label-test.js.
     let pass = vec![
         (
-            r#"<CustomControl><span><span>Save</span></span></CustomControl>"#,
+            r"<CustomControl><span><span>Save</span></span></CustomControl>",
             Some(
                 serde_json::json!([{"depth":3,"controlComponents":["CustomControl"],"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -313,7 +313,7 @@ fn test_recommended() {
             None,
         ),
         (
-            r#"<CustomControl>Save</CustomControl>"#,
+            r"<CustomControl>Save</CustomControl>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -322,28 +322,28 @@ fn test_recommended() {
             ),
         ),
         (
-            r#"<button>Save</button>"#,
+            r"<button>Save</button>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<button><span>Save</span></button>"#,
+            r"<button><span>Save</span></button>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<button><span><span>Save</span></span></button>"#,
+            r"<button><span><span>Save</span></span></button>",
             Some(
                 serde_json::json!([{"depth":3,"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<button><span><span><span><span><span><span><span><span>Save</span></span></span></span></span></span></span></span></button>"#,
+            r"<button><span><span><span><span><span><span><span><span>Save</span></span></span></span></span></span></span></span></button>",
             Some(
                 serde_json::json!([{"depth":9,"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -385,7 +385,7 @@ fn test_recommended() {
             None,
         ),
         (
-            r#"<button>{sureWhyNot}</button>"#,
+            r"<button>{sureWhyNot}</button>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -413,28 +413,28 @@ fn test_recommended() {
             None,
         ),
         (
-            r#"<link>Save</link>"#,
+            r"<link>Save</link>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<menuitem>Save</menuitem>"#,
+            r"<menuitem>Save</menuitem>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<option>Save</option>"#,
+            r"<option>Save</option>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<th>Save</th>"#,
+            r"<th>Save</th>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -861,343 +861,343 @@ fn test_recommended() {
             None,
         ),
         (
-            r#"<abbr />"#,
+            r"<abbr />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<article />"#,
+            r"<article />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<blockquote />"#,
+            r"<blockquote />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<br />"#,
+            r"<br />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<caption />"#,
+            r"<caption />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<dd />"#,
+            r"<dd />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<details />"#,
+            r"<details />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<dfn />"#,
+            r"<dfn />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<dialog />"#,
+            r"<dialog />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<dir />"#,
+            r"<dir />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<dl />"#,
+            r"<dl />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<dt />"#,
+            r"<dt />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<fieldset />"#,
+            r"<fieldset />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<figcaption />"#,
+            r"<figcaption />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<figure />"#,
+            r"<figure />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<footer />"#,
+            r"<footer />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<form />"#,
+            r"<form />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<frame />"#,
+            r"<frame />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<h1 />"#,
+            r"<h1 />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<h2 />"#,
+            r"<h2 />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<h3 />"#,
+            r"<h3 />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<h4 />"#,
+            r"<h4 />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<h5 />"#,
+            r"<h5 />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<h6 />"#,
+            r"<h6 />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<hr />"#,
+            r"<hr />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<iframe />"#,
+            r"<iframe />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<img />"#,
+            r"<img />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<label />"#,
+            r"<label />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<legend />"#,
+            r"<legend />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<li />"#,
+            r"<li />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<link />"#,
+            r"<link />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<main />"#,
+            r"<main />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<mark />"#,
+            r"<mark />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<marquee />"#,
+            r"<marquee />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<menu />"#,
+            r"<menu />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<meter />"#,
+            r"<meter />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<nav />"#,
+            r"<nav />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<ol />"#,
+            r"<ol />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<p />"#,
+            r"<p />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<pre />"#,
+            r"<pre />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<progress />"#,
+            r"<progress />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<ruby />"#,
+            r"<ruby />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<section />"#,
+            r"<section />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<table />"#,
+            r"<table />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<tbody />"#,
+            r"<tbody />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<tfoot />"#,
+            r"<tfoot />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<thead />"#,
+            r"<thead />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<time />"#,
+            r"<time />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<ul />"#,
+            r"<ul />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -1470,7 +1470,7 @@ fn test_recommended() {
             None,
         ),
         (
-            r#"<input />"#,
+            r"<input />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -1659,42 +1659,42 @@ fn test_recommended() {
             None,
         ),
         (
-            r#"<audio />"#,
+            r"<audio />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<canvas />"#,
+            r"<canvas />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<embed />"#,
+            r"<embed />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<textarea />"#,
+            r"<textarea />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<tr />"#,
+            r"<tr />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<video />"#,
+            r"<video />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -1774,21 +1774,21 @@ fn test_recommended() {
 
     let fail = vec![
         (
-            r#"<button />"#,
+            r"<button />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<button><span /></button>"#,
+            r"<button><span /></button>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<button><img /></button>"#,
+            r"<button><img /></button>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -1802,21 +1802,21 @@ fn test_recommended() {
             None,
         ),
         (
-            r#"<button><span><span><span>Save</span></span></span></button>"#,
+            r"<button><span><span><span>Save</span></span></span></button>",
             Some(
                 serde_json::json!([{"depth":3,"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<CustomControl><span><span></span></span></CustomControl>"#,
+            r"<CustomControl><span><span></span></span></CustomControl>",
             Some(
                 serde_json::json!([{"depth":3,"controlComponents":["CustomControl"],"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<CustomControl></CustomControl>"#,
+            r"<CustomControl></CustomControl>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -1839,28 +1839,28 @@ fn test_recommended() {
             None,
         ),
         (
-            r#"<menuitem />"#,
+            r"<menuitem />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<option />"#,
+            r"<option />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<th />"#,
+            r"<th />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<td />"#,
+            r"<td />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -2020,7 +2020,7 @@ fn test_strict() {
     // Generated from jsx-eslint/eslint-plugin-jsx-a11y __tests__/src/rules/control-has-associated-label-test.js.
     let pass = vec![
         (
-            r#"<CustomControl><span><span>Save</span></span></CustomControl>"#,
+            r"<CustomControl><span><span>Save</span></span></CustomControl>",
             Some(
                 serde_json::json!([{"depth":3,"controlComponents":["CustomControl"],"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -2034,7 +2034,7 @@ fn test_strict() {
             None,
         ),
         (
-            r#"<CustomControl>Save</CustomControl>"#,
+            r"<CustomControl>Save</CustomControl>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -2043,28 +2043,28 @@ fn test_strict() {
             ),
         ),
         (
-            r#"<button>Save</button>"#,
+            r"<button>Save</button>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<button><span>Save</span></button>"#,
+            r"<button><span>Save</span></button>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<button><span><span>Save</span></span></button>"#,
+            r"<button><span><span>Save</span></span></button>",
             Some(
                 serde_json::json!([{"depth":3,"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<button><span><span><span><span><span><span><span><span>Save</span></span></span></span></span></span></span></span></button>"#,
+            r"<button><span><span><span><span><span><span><span><span>Save</span></span></span></span></span></span></span></span></button>",
             Some(
                 serde_json::json!([{"depth":9,"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -2106,7 +2106,7 @@ fn test_strict() {
             None,
         ),
         (
-            r#"<button>{sureWhyNot}</button>"#,
+            r"<button>{sureWhyNot}</button>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -2134,28 +2134,28 @@ fn test_strict() {
             None,
         ),
         (
-            r#"<link>Save</link>"#,
+            r"<link>Save</link>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<menuitem>Save</menuitem>"#,
+            r"<menuitem>Save</menuitem>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<option>Save</option>"#,
+            r"<option>Save</option>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<th>Save</th>"#,
+            r"<th>Save</th>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -2582,343 +2582,343 @@ fn test_strict() {
             None,
         ),
         (
-            r#"<abbr />"#,
+            r"<abbr />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<article />"#,
+            r"<article />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<blockquote />"#,
+            r"<blockquote />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<br />"#,
+            r"<br />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<caption />"#,
+            r"<caption />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<dd />"#,
+            r"<dd />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<details />"#,
+            r"<details />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<dfn />"#,
+            r"<dfn />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<dialog />"#,
+            r"<dialog />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<dir />"#,
+            r"<dir />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<dl />"#,
+            r"<dl />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<dt />"#,
+            r"<dt />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<fieldset />"#,
+            r"<fieldset />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<figcaption />"#,
+            r"<figcaption />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<figure />"#,
+            r"<figure />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<footer />"#,
+            r"<footer />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<form />"#,
+            r"<form />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<frame />"#,
+            r"<frame />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<h1 />"#,
+            r"<h1 />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<h2 />"#,
+            r"<h2 />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<h3 />"#,
+            r"<h3 />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<h4 />"#,
+            r"<h4 />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<h5 />"#,
+            r"<h5 />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<h6 />"#,
+            r"<h6 />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<hr />"#,
+            r"<hr />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<iframe />"#,
+            r"<iframe />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<img />"#,
+            r"<img />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<label />"#,
+            r"<label />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<legend />"#,
+            r"<legend />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<li />"#,
+            r"<li />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<link />"#,
+            r"<link />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<main />"#,
+            r"<main />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<mark />"#,
+            r"<mark />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<marquee />"#,
+            r"<marquee />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<menu />"#,
+            r"<menu />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<meter />"#,
+            r"<meter />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<nav />"#,
+            r"<nav />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<ol />"#,
+            r"<ol />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<p />"#,
+            r"<p />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<pre />"#,
+            r"<pre />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<progress />"#,
+            r"<progress />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<ruby />"#,
+            r"<ruby />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<section />"#,
+            r"<section />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<table />"#,
+            r"<table />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<tbody />"#,
+            r"<tbody />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<tfoot />"#,
+            r"<tfoot />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<thead />"#,
+            r"<thead />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<time />"#,
+            r"<time />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<ul />"#,
+            r"<ul />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -3191,7 +3191,7 @@ fn test_strict() {
             None,
         ),
         (
-            r#"<input />"#,
+            r"<input />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -3380,42 +3380,42 @@ fn test_strict() {
             None,
         ),
         (
-            r#"<audio />"#,
+            r"<audio />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<canvas />"#,
+            r"<canvas />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<embed />"#,
+            r"<embed />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<textarea />"#,
+            r"<textarea />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<tr />"#,
+            r"<tr />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<video />"#,
+            r"<video />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -3495,21 +3495,21 @@ fn test_strict() {
 
     let fail = vec![
         (
-            r#"<button />"#,
+            r"<button />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<button><span /></button>"#,
+            r"<button><span /></button>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<button><img /></button>"#,
+            r"<button><img /></button>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -3523,21 +3523,21 @@ fn test_strict() {
             None,
         ),
         (
-            r#"<button><span><span><span>Save</span></span></span></button>"#,
+            r"<button><span><span><span>Save</span></span></span></button>",
             Some(
                 serde_json::json!([{"depth":3,"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<CustomControl><span><span></span></span></CustomControl>"#,
+            r"<CustomControl><span><span></span></span></CustomControl>",
             Some(
                 serde_json::json!([{"depth":3,"controlComponents":["CustomControl"],"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<CustomControl></CustomControl>"#,
+            r"<CustomControl></CustomControl>",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -3560,28 +3560,28 @@ fn test_strict() {
             None,
         ),
         (
-            r#"<menuitem />"#,
+            r"<menuitem />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<option />"#,
+            r"<option />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<th />"#,
+            r"<th />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
             None,
         ),
         (
-            r#"<td />"#,
+            r"<td />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
