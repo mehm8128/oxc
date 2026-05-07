@@ -31,26 +31,20 @@ use crate::{
 /// The chunk buffer must contain nothing but the `FormatElement`s generated from `ImportDeclaration`s,
 /// and their preceding/trailing comments, and line breaks.
 ///
-/// `transform` expects its input to end with `Line(Hard)` so its line-walker flushes the last import.
-/// We synthesize that terminator here, hand the chunk slice to `transform`, then trim the terminator off the replacement
-/// before splicing. The next `entry` call (or the closing newline emitted by `Program::write`) will write the real
-/// inter-statement separator.
+/// The chunk slice does not include any trailing line break, and `transform` produces a slice with
+/// the same shape. The inter-statement separator is written by the next `entry` call
+/// (or the closing newline emitted by `Program::write`).
 ///
 /// The caller must already have verified that `sort_imports` option is enabled.
 ///
 /// # Panics
 /// Panics if `sort_imports` option is not enabled.
 pub fn sort_imports_chunk(formatter: &mut Formatter<'_, '_>, chunk_start: usize) {
-    formatter.write_element(FormatElement::Line(LineMode::Hard));
-
     let elements = &formatter.elements()[chunk_start..];
     let options = formatter.options().sort_imports.as_ref().unwrap();
 
     let sorted_elements = transform(elements, options, formatter.allocator());
-    debug_assert!(matches!(sorted_elements.last(), Some(FormatElement::Line(LineMode::Hard))));
-
-    let sorted_elements = &sorted_elements[..sorted_elements.len() - 1];
-    formatter.replace_end(chunk_start, sorted_elements);
+    formatter.replace_end(chunk_start, &sorted_elements);
 }
 
 /// An IR transform that sorts import statements according to specified options.
@@ -64,7 +58,8 @@ pub fn sort_imports_chunk(formatter: &mut Formatter<'_, '_>, chunk_start: usize)
 // NOTE: The input `FormatElement`s are already well-formatted.
 // It means that:
 // - There is no redundant spaces, no consecutive line breaks, etc...
-// - Last element is always `FormatElement::Line(Hard)`.
+// - The slice does not end with a line break (the inter-statement separator is written
+//   by the next `entry` call, not as part of the chunk).
 fn transform<'a>(
     elements: &[FormatElement<'a>],
     options: &SortImportsOptions,
@@ -180,8 +175,20 @@ fn transform<'a>(
             }
         }
     }
+    // Flush the final line at end-of-input.
+    // The chunk doesn't end with a `Line(Hard)`, so the in-loop flush above won't catch this.
     if current_line_start < prev_elements.len() {
-        unreachable!("`Document` must end with a `FormatElement::Line(Hard)`.");
+        debug_assert!(
+            !in_alignable_block_comment && !inside_multiline_import,
+            "Unbalanced labelled tags at end of chunk"
+        );
+        let range = current_line_start..prev_elements.len();
+        let line = if is_standalone_alignable_comment {
+            SourceLine::CommentOnly(range, LineMode::Hard)
+        } else {
+            SourceLine::from_element_range(prev_elements, range, LineMode::Hard)
+        };
+        lines.push(line);
     }
 
     // Next, partition `SourceLine`s into `PartitionedChunk`s.
@@ -367,6 +374,11 @@ fn transform<'a>(
             }
         }
     }
+
+    // The last `SourceLine::write` always pushes a trailing line break,
+    // but the input chunk had none. Pop it to match the input shape.
+    debug_assert!(matches!(next_elements.last(), Some(FormatElement::Line(_))));
+    next_elements.pop();
 
     next_elements
 }
