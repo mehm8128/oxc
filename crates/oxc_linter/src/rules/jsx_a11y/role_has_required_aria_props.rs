@@ -74,18 +74,17 @@ impl Rule for RoleHasRequiredAriaProps {
             let roles = role_values.value.split_whitespace();
             for role in roles {
                 if let Some((_, props)) = ROLE_TO_REQUIRED_ARIA_PROPS.iter().find(|r| r.0 == role) {
-                    let missing: Vec<&&str> = props
+                    let formatted_missing = props
                         .iter()
                         .filter(|prop| has_jsx_prop_ignore_case(jsx_el, prop).is_none())
-                        .collect();
-                    if !missing.is_empty() {
-                        let formatted = missing
-                            .iter()
-                            .map(|prop| format!("`{prop}`"))
-                            .collect::<Vec<_>>()
-                            .join(", ");
+                        .map(|prop| format!("`{prop}`"))
+                        .collect::<Vec<_>>()
+                        .join(", ");
+                    if !formatted_missing.is_empty() {
                         ctx.diagnostic(role_has_required_aria_props_diagnostic(
-                            attr.span, role, &formatted,
+                            attr.span,
+                            role,
+                            &formatted_missing,
                         ));
                     }
                 }
