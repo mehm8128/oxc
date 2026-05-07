@@ -226,7 +226,8 @@ fn transform<'a>(
                 current_chunk.add_imports_line(line);
             }
             // This `SourceLine` is a boundary!
-            // Generally, `SourceLine::Others` should always reach here.
+            // Reached only when `partition_by_newline` is true (for `Empty`)
+            // or `partition_by_comment` is true (for `CommentOnly`).
             _ => {
                 // Flush current import chunk
                 if !current_chunk.is_empty() {
