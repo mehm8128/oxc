@@ -283,6 +283,7 @@ type: `string[]`
 Glob patterns to exclude from this override.
 
 A set of glob patterns.
+Patterns are matched against paths relative to the configuration file's directory.
 
 
 #### overrides[n].files
@@ -291,9 +292,9 @@ type: `string[]`
 
 
 Glob patterns to match files for this override.
-All patterns are relative to the Oxfmt configuration file.
 
 A set of glob patterns.
+Patterns are matched against paths relative to the configuration file's directory.
 
 
 #### overrides[n].options

@@ -37,7 +37,6 @@ pub struct Oxfmtrc {
 #[serde(rename_all = "camelCase")]
 pub struct OxfmtOverrideConfig {
     /// Glob patterns to match files for this override.
-    /// All patterns are relative to the Oxfmt configuration file.
     pub files: GlobSet,
     /// Glob patterns to exclude from this override.
     #[serde(default, skip_serializing_if = "GlobSet::is_empty")]

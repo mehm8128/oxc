@@ -2,6 +2,7 @@ use schemars::JsonSchema;
 use serde::{Deserialize, Deserializer, Serialize};
 
 /// A set of glob patterns.
+/// Patterns are matched against paths relative to the configuration file's directory.
 #[derive(Debug, Default, Clone, Eq, PartialEq, Serialize, JsonSchema)]
 pub struct GlobSet(Vec<String>);
 

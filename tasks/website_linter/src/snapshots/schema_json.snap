@@ -281,12 +281,12 @@ expression: json
       ]
     },
     "GlobSet": {
-      "description": "A set of glob patterns.",
+      "description": "A set of glob patterns.\nPatterns are matched against paths relative to the configuration file's directory.",
       "type": "array",
       "items": {
         "type": "string"
       },
-      "markdownDescription": "A set of glob patterns."
+      "markdownDescription": "A set of glob patterns.\nPatterns are matched against paths relative to the configuration file's directory."
     },
     "GlobalValue": {
       "type": "string",

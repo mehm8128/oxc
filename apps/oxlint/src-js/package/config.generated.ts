@@ -38,6 +38,7 @@ export type ExternalPluginEntry =
     };
 /**
  * A set of glob patterns.
+ * Patterns are matched against paths relative to the configuration file's directory.
  */
 export type GlobSet = string[];
 export type LintPluginOptionsSchema =

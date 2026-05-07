@@ -511,6 +511,7 @@ A list of glob patterns to override.
 `[ "*.test.ts", "*.spec.ts" ]`
 
 A set of glob patterns.
+Patterns are matched against paths relative to the configuration file's directory.
 
 
 #### overrides[n].globals
@@ -535,6 +536,7 @@ simply does not apply to them.
 `[ "*.generated.ts", "fixtures/**" ]`
 
 A set of glob patterns.
+Patterns are matched against paths relative to the configuration file's directory.
 
 
 #### overrides[n].jsPlugins
