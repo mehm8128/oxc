@@ -240,6 +240,15 @@ fn synthesized_block_closing_braces_are_mapped() {
     );
 }
 
+// Both `)` of `factory()()` should map to their own source position
+// at the gen position of the `)`, not one past it.
+#[test]
+fn call_end_mapping_lands_at_close_paren() {
+    let tokens = sourcemap_tokens("factory()()", SourceType::mjs());
+    assert!(has_mapping(&tokens, pos(0, 8), pos(0, 8)), "inner `)`");
+    assert!(has_mapping(&tokens, pos(0, 10), pos(0, 10)), "outer `)`");
+}
+
 #[test]
 #[cfg(all(not(target_endian = "big"), target_pointer_width = "64"))] // we run big endian tests on docker that does not have node installed; skip 32-bit as well
 fn stacktrace_is_correct() {

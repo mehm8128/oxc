@@ -720,8 +720,10 @@ impl<'a> Codegen<'a> {
         } else {
             self.print_list(arguments, ctx);
         }
-        self.print_ascii_byte(b')');
+        // End mapping at the gen position OF `)`, not past it. Matches
+        // esbuild/Babel and avoids shadowing the next AST node's start.
         self.add_source_mapping_end(span);
+        self.print_ascii_byte(b')');
     }
 
     fn print_list_with_comments(&mut self, items: &[Argument<'_>], ctx: Context) {
