@@ -212,6 +212,19 @@ impl Renderer {
                     if section.default.is_none() && !subschema.has_type(InstanceType::Object) {
                         section.default = Self::render_default(schema);
                     }
+                    // Schemars' draft-07 visitor wraps a `$ref` in `allOf` when sibling
+                    // properties (e.g. `description`) exist. Combine the property-level
+                    // description (context-specific) with the referenced type's description
+                    // (generic semantics) so neither layer is hidden by the other.
+                    if let Some(outer_desc) =
+                        schema.metadata.as_ref().and_then(|m| m.description.clone())
+                    {
+                        section.description = if section.description.is_empty() {
+                            outer_desc
+                        } else {
+                            format!("{outer_desc}\n\n{}", section.description)
+                        };
+                    }
                     section.sanitize();
                     section
                 })
