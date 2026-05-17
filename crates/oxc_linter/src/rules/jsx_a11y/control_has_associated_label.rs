@@ -2,7 +2,7 @@ use std::ops::Deref;
 
 use oxc_ast::{
     AstKind,
-    ast::{JSXAttributeItem, JSXAttributeValue, JSXChild, JSXElement},
+    ast::{JSXAttributeItem, JSXAttributeValue, JSXChild, JSXElement, JSXOpeningElement},
 };
 use oxc_diagnostics::OxcDiagnostic;
 use oxc_macros::declare_oxc_lint;
@@ -18,7 +18,7 @@ use crate::{
     rule::Rule,
     utils::{
         get_element_type, get_jsx_attribute_name, get_string_literal_prop_value, has_jsx_prop,
-        is_hidden_from_screen_reader, is_interactive_element, is_interactive_role,
+        is_focusable, is_hidden_from_screen_reader, is_interactive_element, is_interactive_role,
         is_react_component_name,
     },
 };
@@ -185,8 +185,11 @@ impl Rule for ControlHasAssociatedLabel {
         }
 
         let is_dom_element = HTML_TAG.contains(element_type.as_ref());
-        let is_interactive_el = is_interactive_element(&element_type, &element.opening_element);
-        let is_interactive_role_el = role.is_some_and(is_interactive_role);
+        let is_interactive_el =
+            is_interactive_element(&element_type, &element.opening_element);
+        let is_interactive_role_el = role.is_some_and(|r| {
+            is_interactive_role_for_rule(r, &element.opening_element, &element_type)
+        });
         let is_control_component =
             self.control_components.iter().any(|c| c.as_str() == element_type.as_ref());
 
@@ -200,6 +203,18 @@ impl Rule for ControlHasAssociatedLabel {
         }
     }
 }
+
+fn is_interactive_role_for_rule(
+    role: &str,
+    jsx_el: &JSXOpeningElement,
+    element_type: &str,
+) -> bool {
+    match role {
+         "separator" => is_focusable(jsx_el, element_type),
+        _ => is_interactive_role(role),
+    }
+}
+
 
 impl ControlHasAssociatedLabel {
     fn may_have_accessible_label<'a>(
@@ -1687,6 +1702,13 @@ fn test_recommended() {
             None,
         ),
         (
+            r"<td />",
+            Some(
+                serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
+            ),
+            None,
+        ),
+        (
             r"<tr />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
@@ -1737,6 +1759,13 @@ fn test_recommended() {
         ),
         (
             r#"<div role="row" />"#,
+            Some(
+                serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
+            ),
+            None,
+        ),
+        (
+            r#"<div role="separator" />"#,
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -1860,13 +1889,6 @@ fn test_recommended() {
             None,
         ),
         (
-            r"<td />",
-            Some(
-                serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
-            ),
-            None,
-        ),
-        (
             r#"<div role="button" />"#,
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
@@ -1959,13 +1981,6 @@ fn test_recommended() {
         ),
         (
             r#"<div role="searchbox" />"#,
-            Some(
-                serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
-            ),
-            None,
-        ),
-        (
-            r#"<div role="separator" />"#,
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -3408,6 +3423,13 @@ fn test_strict() {
             None,
         ),
         (
+            r"<td />",
+            Some(
+                serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
+            ),
+            None,
+        ),
+        (
             r"<tr />",
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
@@ -3458,6 +3480,13 @@ fn test_strict() {
         ),
         (
             r#"<div role="row" />"#,
+            Some(
+                serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
+            ),
+            None,
+        ),
+        (
+            r#"<div role="separator" />"#,
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),
@@ -3581,13 +3610,6 @@ fn test_strict() {
             None,
         ),
         (
-            r"<td />",
-            Some(
-                serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
-            ),
-            None,
-        ),
-        (
             r#"<div role="button" />"#,
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
@@ -3680,13 +3702,6 @@ fn test_strict() {
         ),
         (
             r#"<div role="searchbox" />"#,
-            Some(
-                serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
-            ),
-            None,
-        ),
-        (
-            r#"<div role="separator" />"#,
             Some(
                 serde_json::json!([{"ignoreElements":["audio","canvas","embed","input","textarea","tr","video"],"ignoreRoles":["grid","listbox","menu","menubar","radiogroup","row","tablist","toolbar","tree","treegrid"],"includeRoles":["alert","dialog"]}]),
             ),

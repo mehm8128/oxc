@@ -21,8 +21,8 @@ use crate::{
     utils::{
         KEYBOARD_EVENT_HANDLERS, MOUSE_EVENT_HANDLERS, get_element_type, get_prop_value,
         get_string_literal_prop_value, has_jsx_prop, has_jsx_prop_ignore_case, is_abstract_role,
-        is_abstract_role_name, is_hidden_from_screen_reader, is_interactive_element,
-        is_interactive_role, is_non_interactive_element, is_non_interactive_role, parse_jsx_value,
+        is_abstract_role_name, is_focusable, is_hidden_from_screen_reader, is_interactive_element,
+        is_interactive_role, is_non_interactive_element, is_non_interactive_role,
     },
 };
 
@@ -276,28 +276,6 @@ fn is_non_interactive_role_for_rule(
     is_non_interactive_role(role)
 }
 
-fn is_focusable(jsx_el: &JSXOpeningElement, element_type: &str) -> bool {
-    if has_jsx_prop_ignore_case(jsx_el, "tabIndex")
-        .and_then(get_prop_value)
-        .and_then(|value| parse_jsx_value(value).ok())
-        .is_some_and(f64::is_finite)
-    {
-        return true;
-    }
-
-    match element_type {
-        "a" | "area" => has_jsx_prop_ignore_case(jsx_el, "href").is_some(),
-        "button" | "select" | "textarea" => has_jsx_prop_ignore_case(jsx_el, "disabled").is_none(),
-        "input" => {
-            has_jsx_prop_ignore_case(jsx_el, "disabled").is_none()
-                && !has_jsx_prop_ignore_case(jsx_el, "type")
-                    .and_then(get_string_literal_prop_value)
-                    .is_some_and(|value| value.eq_ignore_ascii_case("hidden"))
-        }
-        _ => false,
-    }
-}
-
 fn first_recognized_role(role_value: &str) -> Option<Cow<'_, str>> {
     role_value.split_whitespace().find_map(|role| {
         let role = role.cow_to_lowercase();
@@ -457,11 +435,10 @@ fn test() {
     for tag in [
         "acronym", "applet", "area", "audio", "b", "base", "bdi", "bdo", "big", "blink", "canvas",
         "center", "cite", "col", "colgroup", "content", "data", "datalist", "embed", "font",
-        "frame", "frameset", "head", "header", "hgroup", "i", "kbd", "keygen", "link", "map",
-        "menuitem", "meta", "noembed", "noscript", "object", "param", "picture", "q", "rp", "rt",
-        "rtc", "s", "samp", "script", "section", "small", "source", "spacer", "span", "strike",
-        "style", "summary", "td", "th", "title", "tr", "track", "tt", "u", "var", "video", "wbr",
-        "xmp",
+        "frame", "frameset", "head", "header", "i", "kbd", "keygen", "link", "map", "menuitem",
+        "meta", "noembed", "noscript", "object", "param", "picture", "q", "rp", "rt", "rtc",
+        "samp", "script", "section", "small", "source", "spacer", "span", "strike", "style",
+        "summary", "th", "title", "tr", "track", "tt", "u", "var", "video", "wbr", "xmp",
     ] {
         pass.push(format!("<{tag} onClick={{() => void 0}} />").into());
     }
@@ -650,6 +627,7 @@ fn test() {
         "h4",
         "h5",
         "h6",
+        "hgroup",
         "hr",
         "html",
         "ins",
@@ -666,11 +644,13 @@ fn test() {
         "pre",
         "progress",
         "ruby",
+        "s",
         "strong",
         "sub",
         "sup",
         "table",
         "tbody",
+        "td",
         "tfoot",
         "thead",
         "time",

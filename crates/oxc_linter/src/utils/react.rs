@@ -209,6 +209,7 @@ pub fn is_interactive_element(element_type: &str, jsx_opening_el: &JSXOpeningEle
         "audio" | "canvas" | "datalist" | "embed" | "menuitem" | "select" | "summary" | "video" => {
             true
         }
+        "td" | "hr" => is_focusable(jsx_opening_el, element_type),
         "input" => {
             if let Some(input_type) = has_jsx_prop(jsx_opening_el, "type")
                 && get_string_literal_prop_value(input_type)
@@ -238,6 +239,7 @@ pub fn is_non_interactive_element(element_type: &str, jsx_opening_el: &JSXOpenin
         // reliably test that.
         // @see https://www.w3.org/TR/wai-aria-practices/examples/landmarks/banner.html
         "header" => false,
+        "td" | "hr" => !is_focusable(jsx_opening_el, element_type),
         // Only treat <section> as non-interactive when it has an accessible name.
         "section" => {
             has_jsx_prop_ignore_case(jsx_opening_el, "aria-label").is_some()
@@ -259,6 +261,28 @@ pub fn is_static_element(element_type: &str, jsx_opening_el: &JSXOpeningElement)
             !is_interactive_element(element_type, jsx_opening_el)
                 && !is_non_interactive_element(element_type, jsx_opening_el)
         }
+    }
+}
+
+pub fn is_focusable(jsx_el: &JSXOpeningElement, element_type: &str) -> bool {
+    if has_jsx_prop_ignore_case(jsx_el, "tabIndex")
+        .and_then(get_prop_value)
+        .and_then(|value| parse_jsx_value(value).ok())
+        .is_some_and(f64::is_finite)
+    {
+        return true;
+    }
+
+    match element_type {
+        "a" | "area" => has_jsx_prop_ignore_case(jsx_el, "href").is_some(),
+        "button" | "select" | "textarea" => has_jsx_prop_ignore_case(jsx_el, "disabled").is_none(),
+        "input" => {
+            has_jsx_prop_ignore_case(jsx_el, "disabled").is_none()
+                && !has_jsx_prop_ignore_case(jsx_el, "type")
+                    .and_then(get_string_literal_prop_value)
+                    .is_some_and(|value| value.eq_ignore_ascii_case("hidden"))
+        }
+        _ => false,
     }
 }
 

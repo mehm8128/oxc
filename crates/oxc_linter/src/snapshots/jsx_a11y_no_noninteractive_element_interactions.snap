@@ -368,6 +368,13 @@ source: crates/oxc_linter/src/tester.rs
 
   ⚠ jsx-a11y(no-noninteractive-element-interactions): Non-interactive elements should not be assigned mouse or keyboard event listeners.
    ╭─[no_noninteractive_element_interactions.tsx:1:2]
+ 1 │ <hgroup onClick={() => void 0} />
+   ·  ──────
+   ╰────
+  help: Move the handler to an interactive element, or use an appropriate interactive role.
+
+  ⚠ jsx-a11y(no-noninteractive-element-interactions): Non-interactive elements should not be assigned mouse or keyboard event listeners.
+   ╭─[no_noninteractive_element_interactions.tsx:1:2]
  1 │ <hr onClick={() => void 0} />
    ·  ──
    ╰────
@@ -480,6 +487,13 @@ source: crates/oxc_linter/src/tester.rs
 
   ⚠ jsx-a11y(no-noninteractive-element-interactions): Non-interactive elements should not be assigned mouse or keyboard event listeners.
    ╭─[no_noninteractive_element_interactions.tsx:1:2]
+ 1 │ <s onClick={() => void 0} />
+   ·  ─
+   ╰────
+  help: Move the handler to an interactive element, or use an appropriate interactive role.
+
+  ⚠ jsx-a11y(no-noninteractive-element-interactions): Non-interactive elements should not be assigned mouse or keyboard event listeners.
+   ╭─[no_noninteractive_element_interactions.tsx:1:2]
  1 │ <strong onClick={() => void 0} />
    ·  ──────
    ╰────
@@ -510,6 +524,13 @@ source: crates/oxc_linter/src/tester.rs
    ╭─[no_noninteractive_element_interactions.tsx:1:2]
  1 │ <tbody onClick={() => void 0} />
    ·  ─────
+   ╰────
+  help: Move the handler to an interactive element, or use an appropriate interactive role.
+
+  ⚠ jsx-a11y(no-noninteractive-element-interactions): Non-interactive elements should not be assigned mouse or keyboard event listeners.
+   ╭─[no_noninteractive_element_interactions.tsx:1:2]
+ 1 │ <td onClick={() => void 0} />
+   ·  ──
    ╰────
   help: Move the handler to an interactive element, or use an appropriate interactive role.
 
