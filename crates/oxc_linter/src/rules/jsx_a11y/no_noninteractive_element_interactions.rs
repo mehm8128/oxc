@@ -20,9 +20,9 @@ use crate::{
     rule::{DefaultRuleConfig, Rule},
     utils::{
         KEYBOARD_EVENT_HANDLERS, MOUSE_EVENT_HANDLERS, get_element_type, get_prop_value,
-        get_string_literal_prop_value, has_jsx_prop, has_jsx_prop_ignore_case,
-        is_hidden_from_screen_reader, is_interactive_element, is_interactive_role,
-        is_non_interactive_element, is_non_interactive_role, parse_jsx_value,
+        get_string_literal_prop_value, has_jsx_prop, has_jsx_prop_ignore_case, is_abstract_role,
+        is_abstract_role_name, is_hidden_from_screen_reader, is_interactive_element,
+        is_interactive_role, is_non_interactive_element, is_non_interactive_role, parse_jsx_value,
     },
 };
 
@@ -157,10 +157,7 @@ impl Rule for NoNoninteractiveElementInteractions {
             return;
         }
 
-        if role_value.is_some_and(|role| {
-            let role = role.cow_to_lowercase();
-            is_abstract_role_name(role.as_ref())
-        }) {
+        if is_abstract_role(ctx, jsx_el) {
             return;
         }
 
@@ -313,24 +310,6 @@ fn is_recognized_role(role: &str) -> bool {
         || is_abstract_role_name(role)
         || is_interactive_role(role)
         || is_non_interactive_role(role)
-}
-
-fn is_abstract_role_name(role: &str) -> bool {
-    matches!(
-        role,
-        "command"
-            | "composite"
-            | "input"
-            | "landmark"
-            | "range"
-            | "roletype"
-            | "section"
-            | "sectionhead"
-            | "select"
-            | "structure"
-            | "widget"
-            | "window"
-    )
 }
 
 #[test]

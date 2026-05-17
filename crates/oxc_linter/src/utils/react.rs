@@ -169,23 +169,28 @@ pub fn is_abstract_role<'a>(ctx: &LintContext<'a>, jsx_opening_el: &JSXOpeningEl
     let Some(role) = has_jsx_prop(jsx_opening_el, "role") else {
         return false;
     };
+    let Some(role_string) = get_string_literal_prop_value(role) else {
+        return false;
+    };
 
+    is_abstract_role_name(role_string)
+}
+
+pub fn is_abstract_role_name(role: &str) -> bool {
     matches!(
-        get_string_literal_prop_value(role),
-        Some(
-            "command"
-                | "composite"
-                | "input"
-                | "landmark"
-                | "range"
-                | "roletype"
-                | "section"
-                | "sectionhead"
-                | "select"
-                | "structure"
-                | "widget"
-                | "window"
-        )
+        role,
+        "command"
+            | "composite"
+            | "input"
+            | "landmark"
+            | "range"
+            | "roletype"
+            | "section"
+            | "sectionhead"
+            | "select"
+            | "structure"
+            | "widget"
+            | "window"
     )
 }
 
